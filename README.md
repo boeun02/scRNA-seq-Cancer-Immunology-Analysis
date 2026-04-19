@@ -51,7 +51,7 @@ multimodal-tme-modeling/
 
 | 브랜치 | 역할 |
 |--------|------|
-| main   | 최종 결과 (포트폴리오) |
+| main   | 최종 결과 |
 | dev    | 개발 브랜치 |
 | feature/* | 기능/실험 단위 |
 
