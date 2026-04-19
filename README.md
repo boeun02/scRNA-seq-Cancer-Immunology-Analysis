@@ -22,7 +22,7 @@ Spatial Transcriptomics와 Single-cell 데이터를 기반으로 모델링하는
 ## 3. 📂 Project Structure
 
 ```
-bio-cell-interaction-project/
+multimodal-tme-modeling/
 
 ├── notebooks/ # 분석 및 실험
 │ ├── 01_exploration.ipynb
