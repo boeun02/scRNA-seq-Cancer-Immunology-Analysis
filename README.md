@@ -93,3 +93,6 @@ multimodal-tme-modeling/
 - 세포 간 상호작용 구조를 반영한 그래프 모델
 - TME 구조 시각화
 - 연구 기반 분석 파이프라인 구축
+
+## 9. ⚙️ Environment
+See [docs/environment.md](docs/environment.md)
