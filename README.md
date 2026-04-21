@@ -34,8 +34,13 @@ pretrained DINOv2로 형태학적 특징 추출
 ## Project Structure
 
 ```
+
 spatial-transcriptomics-study/
 ├── README.md
+├── requirements.txt
+├── .gitignore
+├── docs/
+│   └── environment.md
 ├── phase0_basics/
 │   └── 01_pbmc_tutorial.ipynb
 ├── phase1_scrna/
@@ -43,13 +48,16 @@ spatial-transcriptomics-study/
 ├── phase2_spatial/
 │   ├── 01_visium_eda.ipynb
 │   └── 02_paper_reproduction.ipynb
-├── phase3_project/
-│   ├── notebooks/
-│   ├── src/
-│   └── results/
-├── notes/
-│   └── bioterm_glossary.md
-└── requirements.txt
+└── phase3_project/
+    ├── 01_patch_extraction.ipynb
+    ├── 02_feature_extraction.ipynb
+    ├── 03_alignment_analysis.ipynb
+    ├── src/
+    │   ├── patch_extractor.py
+    │   └── feature_aligner.py
+    └── results/
+        └── figures/
+
 ```
 
 ---
@@ -61,6 +69,10 @@ spatial-transcriptomics-study/
 | Phase 1 | 2026.06~ | scRNA-seq 파이프라인 | ⏳ 예정 |
 | Phase 2 | 2026.09~ | Spatial 데이터 + 논문 재현 | ⏳ 예정 |
 | Phase 3 | 2026.12~ | 차별화 프로젝트 | ⏳ 예정 |
+
+---
+## Notes
+- 바이오 용어 단어장: [notion 링크 추후 추가 예정]
 
 ---
 
