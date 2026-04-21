@@ -1,53 +1,83 @@
-# 🧬 Multimodal Tumor Microenvironment Modeling
+# spatial-transcriptomics
 
-암 조직 내 세포 간 상호작용을  
-Spatial Transcriptomics와 Single-cell 데이터를 기반으로 모델링하는 프로젝트입니다.
-
----
-
-## 1. 🎯 Research Goal
-
-- Spatial proximity와 gene expression similarity 간 관계 분석
-- 세포 간 interaction graph 모델링
-- Tumor Microenvironment(TME) 구조 이해
+H&E 이미지의 형태학적 특징과 유전자 발현의 관계를 분석하는 연구 프로젝트
 
 ---
 
-## 2. ❓ Research Question
+## Research Question
 
-> 공간적으로 가까운 세포들은 실제로 유전자적으로도 유사한가?
+> "공간적으로 가까운 spot은 조직 형태와 유전자 발현에서 동시에 유사한가?"
 
 ---
 
-## 3. 📂 Project Structure
+## Background
+- Spatial Transcriptomics는 조직 내 세포의 위치 정보와 유전자 발현을 동시에 측정한다.
+- 기존 연구는 유전자 발현 데이터 중심이었으나, H&E 이미지의 형태학적 정보를 결합하면 조직 구조와 유전자 발현의 관계를 새로운 관점에서 해석할 수 있다.
+
+---
+
+## Methodology
 
 ```
-multimodal-tme-modeling/
+Visium H&E 이미지
+↓
+spot 위치 기준 패치 단위 crop
+↓
+pretrained DINOv2로 형태학적 특징 추출
+↓
+같은 spot의 유전자 발현 벡터와 매핑
+↓
+공간 거리 / 형태 유사도 / 유전자 유사도 관계 분석
+```
 
-├── notebooks/ # 분석 및 실험
-│ ├── 01_exploration.ipynb
-│ ├── 02_similarity.ipynb
-│ └── 03_graph.ipynb
-│
-├── src/ # 핵심 로직
-│ ├── preprocessing.py
-│ ├── similarity.py
-│ ├── graph_builder.py
-│ └── gnn_model.py
-│
-├── app/ # (추후) 서비스 레이어
-│ ├── backend/
-│ └── frontend/
-│
-├── results/ # 결과 저장
-│
+---
+## Project Structure
+
+```
+spatial-transcriptomics-study/
 ├── README.md
+├── phase0_basics/
+│   └── 01_pbmc_tutorial.ipynb
+├── phase1_scrna/
+│   └── 01_geo_pipeline.ipynb
+├── phase2_spatial/
+│   ├── 01_visium_eda.ipynb
+│   └── 02_paper_reproduction.ipynb
+├── phase3_project/
+│   ├── notebooks/
+│   ├── src/
+│   └── results/
+├── notes/
+│   └── bioterm_glossary.md
 └── requirements.txt
 ```
 
 ---
 
-## 4. 🌿 Branch Strategy
+## Study Log
+| Phase | 기간 | 내용 | 상태 |
+|-------|------|------|------|
+| Phase 0 | 2026.04~ | 환경 세팅 + Scanpy 기초 | 🔄 진행중 |
+| Phase 1 | 2026.06~ | scRNA-seq 파이프라인 | ⏳ 예정 |
+| Phase 2 | 2026.09~ | Spatial 데이터 + 논문 재현 | ⏳ 예정 |
+| Phase 3 | 2026.12~ | 차별화 프로젝트 | ⏳ 예정 |
+
+---
+
+## Tech Stack
+
+- Python (Scanpy, Squidpy)
+- PyTorch (DINOv2)
+- Jupyter Notebook
+
+---
+
+## Environment
+See [docs/environment.md](docs/environment.md)
+
+---
+
+## Branch Strategy
 
 | 브랜치 | 역할 |
 |--------|------|
@@ -57,7 +87,7 @@ multimodal-tme-modeling/
 
 ---
 
-## 5. 📝 Commit Convention
+## Commit Convention
 
 | 타입 | 설명 |
 |------|------|
@@ -67,32 +97,3 @@ multimodal-tme-modeling/
 | refactor | 코드 개선 |
 | wip | 실험 중 |
 
----
-
-## 6. 🛠 Tech Stack
-
-- Python (Scanpy, PyTorch)
-- Graph Neural Network
-- FastAPI (예정)
-- React (예정)
-
----
-
-## 7. 📈 Project Roadmap
-
-- [x] Data exploration
-- [ ] Similarity analysis
-- [ ] Graph modeling
-- [ ] Multimodal integration
-- [ ] Web visualization
-
----
-
-## 8. 📊 Expected Outcome
-
-- 세포 간 상호작용 구조를 반영한 그래프 모델
-- TME 구조 시각화
-- 연구 기반 분석 파이프라인 구축
-
-## 9. ⚙️ Environment
-See [docs/environment.md](docs/environment.md)
