@@ -71,6 +71,7 @@ spatial-transcriptomics-study/
 | Phase 3 | 2026.12~ | 차별화 프로젝트 | ⏳ 예정 |
 
 ---
+
 ## Notes
 - 바이오 용어 단어장: [notion 링크 추후 추가 예정]
 
