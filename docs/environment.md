@@ -1,11 +1,11 @@
-# ⚙️ Environment Setup
+# Environment Setup
 
-## 🐍 Python Version
+## Python Version
 - Python 3.10
 
 ---
 
-## 📦 Environment (Conda)
+## Environment (Conda)
 
 ```bash
 conda create -n bio python=3.10
