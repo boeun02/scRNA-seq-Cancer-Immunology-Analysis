@@ -18,3 +18,6 @@ Anndata 구조
 12. obs (Observations): 세포(Cell) 정보 (예: 어느 샘플에서 왔는지, QC 지표 등)
 13. var (Variables): 유전자(Gene) 정보 (예: 미토콘드리아 유전자 여부 등)
 14. X: 실제 발현량 데이터
+15. PC = Principal Component (주성분)
+    단수: PC
+    복수: PCs
