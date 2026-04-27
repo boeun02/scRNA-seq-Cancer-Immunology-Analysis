@@ -3,11 +3,13 @@
 암/면역 단일세포 RNA 시퀀싱 데이터 분석 파이프라인 구축 및 Tumor Microenvironment 연구 프로젝트
 > 분석 파이프라인을 모듈화하여 데이터셋 교체 시 파라미터 설정만으로 재실행 가능하도록 설계
 
+
 ---
 
 ## Research Question
 
 > "폐암 환자의 Tumor Microenvironment에서 면역세포 구성은 치료 반응과 어떤 관계가 있는가?"
+
 
 ---
 
@@ -15,6 +17,7 @@
 - Single-cell RNA sequencing(scRNA-seq)은 개별 세포 수준에서 유전자 발현을 측정한다.
 - Tumor Microenvironment(TME)는 암세포와 면역세포, 기질세포가 공존하는 복잡한 생태계로, 면역치료 반응의 핵심 결정 인자로 주목받고 있다.
 - 기존 연구는 bulk RNA-seq 중심이었으나, scRNA-seq을 통해 세포 타입별 이질성(heterogeneity)을 분해하면 치료 반응 예측에 새로운 관점을 제공할 수 있다.
+
 
 ---
 
@@ -36,7 +39,9 @@ DEG 분석 → 치료 반응 연관 유전자 탐색
 생물학적 해석: 어떤 면역세포 구성이 치료 반응과 연관되는가
 ```
 
+
 ---
+
 ## Project Structure
 
 ```
@@ -68,7 +73,9 @@ scrna-cancer-immunology/
         └── figures/
 ```
 
+
 ---
+
 ## Pipeline Design
 분석 파이프라인은 src/ 모듈로 분리되어 있어 데이터셋 교체 시 파라미터 설정만으로 재실행 가능하다.
 
@@ -86,6 +93,7 @@ adata = annotate_celltypes(adata, marker_genes=LUNG_MARKERS)
 plot_umap(adata, color="cell_type", save="results/figures/umap.png")
 '''
 
+
 ---
 
 ## Study Log
@@ -96,11 +104,14 @@ plot_umap(adata, color="cell_type", save="results/figures/umap.png")
 | Phase 2 | 2026.09~ | DEG 분석 + TME 구성 분석 + 논문 재현 | ⏳ 예정 |
 | Phase 3 | 2026.12~ | 메인 프로젝트 — TME 면역세포 구성 vs 치료 반응 분석 | ⏳ 예정 |
 
+
 ---
+
 ## Data
 | 소스 | 데이터셋 | 내용 |
 |-------|------|------|
 | GEO (NCBI) | GSE127465 | 폐암 tumor-infiltrating immune cells scRNA-seq |
+
 
 ---
 
@@ -110,14 +121,18 @@ plot_umap(adata, color="cell_type", save="results/figures/umap.png")
 - R — Seurat, DESeq2 (Phase 2~3)
 - Jupyter Notebook
 
+
 ---
+
 ## Notes
 - 바이오 용어 단어장: [notion 링크 추후 추가 예정]
+
 
 ---
 
 ## Environment
 See [docs/environment.md](docs/environment.md)
+
 
 ---
 
@@ -128,6 +143,7 @@ See [docs/environment.md](docs/environment.md)
 | main   | 최종 결과 |
 | dev    | 개발 브랜치 |
 | feature/* | 기능/실험 단위 |
+
 
 ---
 
