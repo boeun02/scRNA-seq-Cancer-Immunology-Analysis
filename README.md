@@ -53,8 +53,14 @@ scrna-cancer-immunology/
 │   ├── bio_keywordbooks.md              ← 용어정리
 │   └── environment.md
 ├── phase0_basics/
+│   ├── data
+│   │   └── pbmc3k_raw.h5ad
 │   └── 01_pbmc_tutorial.ipynb           ← Scanpy 기초 파이프라인 실습
 ├── phase1_scrna/
+│   ├── dataset
+│   │   ├── GSE127465_gene_names_human_41861.tsv
+│   │   ├── human_cell_metadata_54773x25.tsv
+│   │   └── GSE127465_human_counts_normalized_54773x41861.mtx
 │   └── 01_geo_pipeline.ipynb            ← GEO 실데이터 전처리 파이프라인
 ├── phase2_analysis/
 │   ├── 01_DEG_analysis.ipynb            ← 차등발현유전자 분석
