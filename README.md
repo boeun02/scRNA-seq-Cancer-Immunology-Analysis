@@ -77,9 +77,11 @@ scrna-cancer-immunology/
 ---
 
 ## Pipeline Design
-분석 파이프라인은 src/ 모듈로 분리되어 있어 데이터셋 교체 시 파라미터 설정만으로 재실행 가능하다.
 
-'''
+분석 파이프라인은 `src/` 모듈로 분리되어 있어 데이터셋 교체 시 파라미터 설정만으로 재실행 가능
+밑은 예시 코드
+
+```python
 from src.preprocess import run_qc, normalize
 from src.clustering import run_umap, run_leiden
 from src.annotation import annotate_celltypes
@@ -91,7 +93,7 @@ adata = normalize(adata)
 adata = run_umap(adata, n_pcs=30, resolution=0.5)
 adata = annotate_celltypes(adata, marker_genes=LUNG_MARKERS)
 plot_umap(adata, color="cell_type", save="results/figures/umap.png")
-'''
+```
 
 
 ---
