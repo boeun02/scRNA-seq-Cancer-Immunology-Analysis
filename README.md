@@ -79,7 +79,6 @@ scrna-cancer-immunology/
 ## Pipeline Design
 
 분석 파이프라인은 `src/` 모듈로 분리되어 있어 데이터셋 교체 시 파라미터 설정만으로 재실행 가능
-밑은 예시 코드
 
 ```python
 from src.preprocess import run_qc, normalize
