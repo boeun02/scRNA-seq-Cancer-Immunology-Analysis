@@ -50,7 +50,7 @@ scrna-cancer-immunology/
 ├── requirements.txt
 ├── .gitignore
 ├── docs/
-│   ├── wordbooks.md                     ← 용어정리
+│   ├── bio_keywordbooks.md              ← 용어정리
 │   └── environment.md
 ├── phase0_basics/
 │   └── 01_pbmc_tutorial.ipynb           ← Scanpy 기초 파이프라인 실습
@@ -136,7 +136,7 @@ plot_umap(adata, color="cell_type", save="results/figures/umap.png")
 ---
 
 ## Notes
-- 바이오 용어 단어장: [notion 링크 추후 추가 예정]
+- 바이오 용어 단어장: See [docs/bio_keywordbooks.md](docs/bio_keywordbooks.md)
 
 
 ---
