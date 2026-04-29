@@ -100,8 +100,8 @@ plot_umap(adata, color="cell_type", save="results/figures/umap.png")
 ## Study Log
 | Phase | 기간 | 내용 | 상태 |
 |-------|------|------|------|
-| Phase 0 | 2026.04~ | 환경 세팅 + Scanpy 기초 | 🔄 진행중 |
-| Phase 1 | 2026.06~ | GEO 실데이터 scRNA-seq 파이프라인 (GSE127465 폐암) | ⏳ 예정 |
+| Phase 0 | 2026.04.21 ~ 2026.04.28 | 환경 세팅 + Scanpy 기초 | ✅ 완료 |
+| Phase 1 | 2026.04.30 ~ | GEO 실데이터 scRNA-seq 파이프라인 (GSE127465 폐암) | 🔄 진행중 |
 | Phase 2 | 2026.09~ | DEG 분석 + TME 구성 분석 + 논문 재현 | ⏳ 예정 |
 | Phase 3 | 2026.12~ | 메인 프로젝트 — TME 면역세포 구성 vs 치료 반응 분석 | ⏳ 예정 |
 
