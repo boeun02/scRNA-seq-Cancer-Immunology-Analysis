@@ -108,10 +108,19 @@ plot_umap(adata, color="cell_type", save="results/figures/umap.png")
 ---
 
 ## Data
+이 프로젝트는 GEO 공개 데이터를 사용합니다.
+
 | 소스 | 데이터셋 | 내용 |
 |-------|------|------|
 | GEO (NCBI) | GSE127465 | 폐암 tumor-infiltrating immune cells scRNA-seq |
 
+## 다운로드 방법
+1. https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE127465 접속
+2. 아래 세 파일 다운로드:
+   - GSE127465_human_counts_normalized_54773x41861.mtx.gz
+   - GSE127465_gene_names_human_41861.tsv.gz
+   - GSE127465_human_cell_metadata_54773x25.tsv.gz
+3. 압축 풀고 phase1_scrna/dataset/ 폴더에 위치
 
 ---
 
