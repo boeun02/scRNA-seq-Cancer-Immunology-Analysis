@@ -60,7 +60,7 @@ scrna-cancer-immunology/
 │   ├── dataset
 │   │   ├── GSE127465_gene_names_human_41861.tsv
 │   │   ├── human_cell_metadata_54773x25.tsv
-│   │   └── GSE127465_human_counts_normalized_54773x41861.mtx
+│   │   └── GSE127465_RAW/raw tsv파일들
 │   └── 01_geo_pipeline.ipynb            ← GEO 실데이터 전처리 파이프라인
 ├── phase2_analysis/
 │   ├── 01_DEG_analysis.ipynb            ← 차등발현유전자 분석
