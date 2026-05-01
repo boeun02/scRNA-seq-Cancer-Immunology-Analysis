@@ -1,7 +1,6 @@
 # scRNA-seq Cancer Immunology Analysis
 
 암/면역 단일세포 RNA 시퀀싱 데이터 분석 파이프라인 구축 및 Tumor Microenvironment 연구 프로젝트
-> 분석 파이프라인을 모듈화하여 데이터셋 교체 시 파라미터 설정만으로 재실행 가능하도록 설계
 
 
 ---
