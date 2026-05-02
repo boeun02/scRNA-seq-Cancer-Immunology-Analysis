@@ -1,4 +1,4 @@
-<26.04.25>
+<26.04.25 ~ 26.04.30>
 # Scanpy tutorial
 
 ## 1. Basic
@@ -21,3 +21,27 @@ Anndata 구조
 15. PC = Principal Component (주성분)
     단수: PC
     복수: PCs
+
+<26.05.02 ~ ...>
+# PHASE 1
+
+## GEO pipeline
+### 1. Raw Data 불러와서 데이터 구조 확인하기
+데이터 구조
+- 행 = 세포 (barcode)
+- 열: 유전자 (gene_name)
+- 값: raw_count (int형 값)
+
+- barcode sequence:
+    barcode는 세포 하나하나를 구별하는 짧은 DNA 서열
+    sequence는 생물학에서 순서가 아니라 DNA 염기 서열을 뜻함 (ex- bcIHWD 이런게 ATCG로 이루어진 짧은 DNA서열인데 표기할 때 압축하여 표현하면 저렇게 표현 됨)
+
+    즉, scRNA-seq 실험할 때 세포 하나씩 캡슐에 넣고 거기에 고유한 DNA 태그(barcode)를 붙여서 '이 유전자 발현 데이터는 이 세포의 것' 이라고 표시하는 것.
+    
+    근데 이때 바코드는 샘플(각각의 tsv파일)마다 독립적으로 생성 되니까 p1환자 샘플과 p2 환자 샘플에서 같은 barcode가 나올 수 있다 (한 스키마 당 고유키 하나씩 할당한다고 치면 완전히 다른 스키마에서는 같을 수도 있다는 것.)
+
+    -> 그래서 여러 샘플들을 한 파일로 합칠 때 중복 문제가 발생
+
+- numpy와 pandas에서 행렬 전치 시키기:
+    transpose의 약어인 .T를 붙여주며 행이 열이되고 열이 행이 됨
+    ex. adata = sc.AnnData(sp.csr_matrix(df.T.values.astype('float32')))
