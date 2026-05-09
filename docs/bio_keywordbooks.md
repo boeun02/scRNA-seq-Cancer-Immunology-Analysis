@@ -44,4 +44,9 @@ Anndata 구조
 
 - numpy와 pandas에서 행렬 전치 시키기:
     transpose의 약어인 .T를 붙여주며 행이 열이되고 열이 행이 됨
+
+    scRNA-seq에서는 AnnData가 항상 행=세포, 열=유전자 구조를 요구함
+    원본 데이터가 행=유전자, 열=세포로 저장된 경우 .T로 전치 필요
+        -> 데이터마다 다르므로 로딩 전 반드시 구조를 print 찍어서 확인할 것
     ex. adata = sc.AnnData(sp.csr_matrix(df.T.values.astype('float32')))
+
