@@ -1,1 +1,13 @@
 
+name: spatial
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.10
+  - scanpy
+  - scipy
+  - numpy
+  - pandas
+  - scikit-misc
+  - pip
