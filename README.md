@@ -80,6 +80,17 @@ scrna-cancer-immunology/
 
 
 ---
+## Paper Reproduction (Phase 2)
+
+> Nguyen TDT, Lee AJ, Park HJ, et al.  
+> **Pan-Cancer Single-Cell RNA Sequencing Analysis Refines Multi-Origin Monocyte and Macrophage Lineages**  
+> *Cancer Immunol Res* 2026;14:350–66  
+> Corresponding authors: Inkyung Jung (KAIST), Woong-Yang Park (Samsung Medical Center)
+
+- Pan-cancer macrophage lineage 분류 파이프라인 재현
+- GSE127465 폐암 데이터 기반으로 분석 적용
+- 재현 노트북: `phase2_analysis/03_paper_reproduction.ipynb`
+---
 
 ## Pipeline Design
 
@@ -107,7 +118,7 @@ plot_umap(adata, color="cell_type", save="results/figures/umap.png")
 |-------|------|------|------|
 | Phase 0 | 2026.04.21 ~ 2026.04.28 | 환경 세팅 + Scanpy 기초 | ✅ 완료 |
 | Phase 1 | 2026.04.30 ~ 2026.05.08 | GEO 실데이터 scRNA-seq 파이프라인 (GSE127465 폐암) | ✅ 완료 |
-| Phase 2 | 2026.09~ | DEG 분석 + TME 구성 분석 + 논문 재현 | 🔄 진행중 |
+| Phase 2 | 2026.05~ | DEG 분석 + TME 구성 분석 + 논문 재현 | 🔄 진행중 |
 | Phase 3 | 2026.12~ | 메인 프로젝트 — TME 면역세포 구성 vs 치료 반응 분석 | ⏳ 예정 |
 
 
@@ -146,7 +157,13 @@ plot_umap(adata, color="cell_type", save="results/figures/umap.png")
 ---
 
 ## Environment
-See [docs/environment.md](docs/environment.md)
+
+```bash
+conda env create -f environment.yml
+conda activate spatial
+```
+
+패키지 상세 내역: [docs/environment.md](docs/environment.md)
 
 
 ---
