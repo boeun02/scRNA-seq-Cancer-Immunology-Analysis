@@ -1,13 +1,29 @@
-
 name: spatial
 channels:
   - conda-forge
   - bioconda
+  - defaults
 dependencies:
   - python=3.10
-  - scanpy
-  - scipy
-  - numpy
-  - pandas
-  - scikit-misc
+  - harmonypy # bioconda 채널
   - pip
+  - pip:
+    - scanpy
+    - scipy
+    - numpy
+    - pandas
+    - scikit-misc
+    - anndata
+    - umap-learn
+    - leidenalg
+    - igraph
+    - matplotlib
+    - seaborn
+    - scikit-learn
+    - scikit-image
+    - statsmodels
+    - numba
+    - h5py
+    - tqdm
+    - pynndescent
+    - session-info2
