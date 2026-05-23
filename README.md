@@ -91,10 +91,10 @@ scrna-cancer-immunology/
 │   │   └── GSE127465_RAW/               ← raw tsv 파일들
 │   └── 01_geo_pipeline.ipynb            ← GEO 실데이터 전처리 파이프라인
 ├── phase2_analysis/
-│   ├── 01_TAM_subtype_annotation.ipynb  ← TAM 서브타입 annotation
-│   ├── 02_DEG_analysis.ipynb            ← 차등발현유전자 분석
-│   ├── 03_TME_composition.ipynb         ← TME 세포 구성 분석
-│   └── 04_paper_reproduction.ipynb      ← 논문 재현 검증
+├── phase2_analysis/
+│   ├── 01_myeloid_subset.ipynb       ← 골수계 서브셋팅 + TAM annotation (2a)
+│   ├── 02_DEG_analysis.ipynb         ← DEG + overlap 확인 + dotplot (2a) + 다암종 DEG (2b)
+│   └── 03_TME_composition.ipynb      ← TME 구성 분석 (2a + 2b)
 └── phase3_project/
     ├── 01_preprocessing.ipynb
     ├── 02_clustering_annotation.ipynb
