@@ -65,8 +65,6 @@ TAM 서브타입 세분화 (C1QC+, SPP1+) + DEG 분석 (Wilcoxon)
 Tumor Microenvironment 세포 구성 분석
        ↓
 결과 시각화 (UMAP, dotplot, heatmap, violin plot)
-
-
 ```
 
 
@@ -135,8 +133,8 @@ scrna-cancer-immunology/
 | Phase | 기간 | 내용 | 상태 |
 |-------|------|------|------|
 | Phase 0 | 2026.04.21 ~ 2026.04.28 | 환경 세팅 + Scanpy 기초 | ✅ 완료 |
-| Phase 1 | 2026.04.30 ~ 2026.05.08 | GEO 실데이터 scRNA-seq 파이프라인 (GSE127465 폐암) | ✅ 완료 |
-| Phase 2a | 2026.05.11 ~ 2026.05.22 | TAM 서브타입 annotation + DEG 분석 + 논문 재현 | ✅ 완료 |
+| Phase 1 | 2026.04.30 ~ 2026.05.10 | GEO 실데이터 scRNA-seq 파이프라인 (GSE127465 폐암) | ✅ 완료 |
+| Phase 2a | 2026.05.16 ~ 2026.05.22 | TAM 서브타입 annotation + DEG 분석 + 논문 재현 | ✅ 완료 |
 | Phase 2b | 2026.05.23 ~ | 다암종 확장 — GSE154763, GSE131907 통합 검증 | 🔄 진행중 |
 | Phase 3 | 2026.12~ | 메인 프로젝트 — scRNA-seq × H&E 이미지 통합 분석 | ⏳ 예정 |
 
