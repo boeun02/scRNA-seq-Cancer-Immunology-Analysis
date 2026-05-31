@@ -1,29 +1,71 @@
+# window version
+# name: spatial
+# channels:
+#   - conda-forge
+#   - bioconda
+#   - defaults
+# dependencies:
+#   - python=3.10
+#   - harmonypy # bioconda 채널
+#   - pip
+#   - pip:
+#     - scanpy
+#     - scipy
+#     - numpy
+#     - pandas
+#     - scikit-misc
+#     - anndata
+#     - umap-learn
+#     - leidenalg
+#     - igraph
+#     - matplotlib
+#     - seaborn
+#     - scikit-learn
+#     - scikit-image
+#     - statsmodels
+#     - numba
+#     - h5py
+#     - tqdm
+#     - pynndescent
+#     - session-info2
+
+# mac version
 name: spatial
+
 channels:
   - conda-forge
   - bioconda
   - defaults
+
 dependencies:
   - python=3.10
-  - harmonypy # bioconda 채널
+
+  # core scientific stack
+  - numpy
+  - scipy
+  - pandas
+  - matplotlib
+  - seaborn
+  - scikit-learn
+  - scikit-image
+  - statsmodels
+  - numba
+  - h5py
+  - tqdm
+
+  # single-cell ecosystem
+  - scanpy
+  - anndata
+  - umap-learn
+  - leidenalg
+  - python-igraph
+  - pynndescent
+  - harmonypy
+  - session-info2
+
+  # optional
   - pip
+ 
+  # pip only if needed
   - pip:
-    - scanpy
-    - scipy
-    - numpy
-    - pandas
-    - scikit-misc
-    - anndata
-    - umap-learn
-    - leidenalg
-    - igraph
-    - matplotlib
-    - seaborn
-    - scikit-learn
-    - scikit-image
-    - statsmodels
-    - numba
-    - h5py
-    - tqdm
-    - pynndescent
-    - session-info2
+      - scikit-misc 
