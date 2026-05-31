@@ -1,5 +1,19 @@
 # Environment Setup
 
+## 환경별 버전 고정 이슈
+numpy 버전 차이(2.x vs 1.x)인해 다른 환경에서 
+leiden 클러스터 결과가 미세하게 달라질 수 있음.
+
+numpy 버전 차이가 부동소수점 연산에
+영향을 주고, 그게 neighbors → leiden으로 쌓이면서 클러스터
+개수 차이까지 발생.
+
+재현성 확보를 위해 주요 패키지 버전 고정:
+- numpy==2.2.6
+- scanpy==1.11.5  
+- leidenalg==0.12.0
+- scipy==1.15.2
+
 ## Python Version
 - Python 3.10
 
