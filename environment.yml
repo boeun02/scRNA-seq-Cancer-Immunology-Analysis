@@ -1,4 +1,35 @@
 # window version
+name: spatial
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.10
+  - harmonypy # bioconda 채널
+  - pip
+  - pip:
+    - scanpy==1.11.5
+    - scipy==1.15.2
+    - numpy==2.2.6
+    - pandas
+    - scikit-misc
+    - anndata
+    - umap-learn
+    - leidenalg==0.12.0
+    - igraph
+    - matplotlib
+    - seaborn
+    - scikit-learn
+    - scikit-image
+    - statsmodels
+    - numba
+    - h5py
+    - tqdm
+    - pynndescent
+    - session-info2
+
+# mac version
 # name: spatial
 # channels:
 #   - conda-forge
@@ -6,66 +37,33 @@
 #   - defaults
 # dependencies:
 #   - python=3.10
-#   - harmonypy # bioconda 채널
+
+#   # core scientific stack
+#   - numpy==2.2.6
+#   - scipy==1.15.2
+#   - pandas
+#   - matplotlib
+#   - seaborn
+#   - scikit-learn
+#   - scikit-image
+#   - statsmodels
+#   - numba
+#   - h5py
+#   - tqdm
+
+#   # single-cell ecosystem
+#   - scanpy==1.11.5
+#   - anndata
+#   - umap-learn
+#   - leidenalg==0.12.0
+#   - python-igraph
+#   - pynndescent
+#   - harmonypy
+#   - session-info2
+
+#   # optional
 #   - pip
-#   - pip:
-#     - scanpy
-#     - scipy
-#     - numpy
-#     - pandas
-#     - scikit-misc
-#     - anndata
-#     - umap-learn
-#     - leidenalg
-#     - igraph
-#     - matplotlib
-#     - seaborn
-#     - scikit-learn
-#     - scikit-image
-#     - statsmodels
-#     - numba
-#     - h5py
-#     - tqdm
-#     - pynndescent
-#     - session-info2
-
-# mac version
-name: spatial
-
-channels:
-  - conda-forge
-  - bioconda
-  - defaults
-
-dependencies:
-  - python=3.10
-
-  # core scientific stack
-  - numpy
-  - scipy
-  - pandas
-  - matplotlib
-  - seaborn
-  - scikit-learn
-  - scikit-image
-  - statsmodels
-  - numba
-  - h5py
-  - tqdm
-
-  # single-cell ecosystem
-  - scanpy
-  - anndata
-  - umap-learn
-  - leidenalg
-  - python-igraph
-  - pynndescent
-  - harmonypy
-  - session-info2
-
-  # optional
-  - pip
  
-  # pip only if needed
-  - pip:
-      - scikit-misc 
+#   # pip only if needed
+#   - pip:
+#       - scikit-misc 
