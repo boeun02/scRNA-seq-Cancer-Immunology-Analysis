@@ -11,7 +11,7 @@ venv/
 # Jupyter
 .ipynb_checkpoints
 
-# Data (VERY IMPORTANT)
+# Data 
 data/
 
 dataset/
@@ -33,5 +33,5 @@ results/
 # Logs
 *.log
 
-# VSCode (선택)
+# VSCode 
 .vscode/
