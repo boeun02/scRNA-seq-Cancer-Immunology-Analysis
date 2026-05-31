@@ -177,6 +177,10 @@ conda activate spatial
 
 패키지 상세 내역: [docs/environment.md](docs/environment.md)
 
+본 분석은 Windows 환경에서 재현성을 고정하였다.  
+PCA, UMAP, Leiden 단계에는 random_state를 지정했으나, OS 및 패키지 버전 차이에 따라 neighbor graph 및 Leiden clustering 결과가 일부 달라질 수 있다.  
+따라서 본 프로젝트에서는 동일 환경 내 재실행 시 결과가 일관적으로 재현되는지를 기준으로 삼았다.
+
 
 
 ---
