@@ -34,6 +34,7 @@ conda activate spatial
 ## environment.yml
 
 ```yaml
+# win ver
 name: spatial
 channels:
   - conda-forge
@@ -63,6 +64,7 @@ dependencies:
     - tqdm
     - pynndescent
     - session-info2
+    - upsetplot
 ```
 
 ---
@@ -89,3 +91,4 @@ dependencies:
 | h5py | h5ad 파일 입출력 |
 | tqdm | 진행률 표시 |
 | session-info2 | 분석 환경 버전 기록 |
+| upsetplot | 집합 교집합 시각화 (UpSet plot) |
