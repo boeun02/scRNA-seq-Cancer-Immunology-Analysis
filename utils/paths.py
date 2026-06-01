@@ -14,6 +14,7 @@ MAC_TME_H5AD = SAVE_DIR / 'GSE127465_mac_phase2a_tme.h5ad'
 CSV_DIR = Path('.') / 'dataset' / 'phase2b'
 LYM_META = CSV_DIR / 'GSE154763_LYM_metadata.csv.gz'
 LYM_NM = CSV_DIR / 'GSE154763_LYM_normalized_expression.csv.gz'
-
 LYM_H5AD = CSV_DIR / 'GSE154763_LYM.h5ad'
+
 ALL_H5AD = SAVE_DIR / 'GSE154763_all.h5ad'
+ALL_MAC_H5AD = SAVE_DIR / 'GSE154763_all_mac.h5ad'
