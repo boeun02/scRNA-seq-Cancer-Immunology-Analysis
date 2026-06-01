@@ -28,6 +28,7 @@ dependencies:
     - tqdm
     - pynndescent
     - session-info2
+    - upsetplot
 
 # mac version
 # name: spatial
@@ -50,6 +51,7 @@ dependencies:
 #   - numba
 #   - h5py
 #   - tqdm
+#   - upsetplot
 
 #   # single-cell ecosystem
 #   - scanpy==1.11.5
