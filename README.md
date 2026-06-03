@@ -85,7 +85,7 @@ TAM 서브타입 세분화 (C1QC+, SPP1+) + DEG 분석 (Wilcoxon)
        ↓
 논문 marker gene vs DEG top 50 overlap 검증
        ↓
-TME 새포 구성 분석 (샘플별 / 암종별 TAM 비율)
+TME 세포 구성 분석 (샘플별 / 암종별 TAM 비율)
        ↓
 다암종 확장 (GSE154763, 8개 암종) — 독립 검증
        ↓
