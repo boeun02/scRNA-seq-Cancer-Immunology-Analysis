@@ -21,8 +21,8 @@ dataset/
 
 # Results
 results/
-*.png
-*.jpg
+# *.png
+# *.jpg
 *.csv
 *.h5ad
 
