@@ -16,7 +16,7 @@
 > **Phase 3**  
 > "폐암 TME에서 SPP1+ TAM이 높은 환자군은 면역치료 비반응군과 겹치는가? — scRNA-seq + H&E 이미지 공간 분포로 검증"
 
----s
+---
 
 ## Background
 - Single-cell RNA sequencing(scRNA-seq)은 개별 세포 수준에서 유전자 발현을 측정한다.
