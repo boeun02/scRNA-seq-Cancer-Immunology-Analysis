@@ -37,14 +37,17 @@
 - GSE127465 폐암 데이터 기반으로 분석 적용 후 GSE154763 다암종 데이터로 독립 검증
 
 ### 재현 결과 (Phase 2a — GSE127465 폐암)
- 
-| 서브타입 | 논문 marker (5개) | 내 DEG top 50 overlap | 일치율 |
-|---|---|---|---|
-| C1QC+ TAM | C1QA, C1QB, C1QC, APOE, FOLR2 | C1QA, C1QB, C1QC, APOE, FOLR2 | **5/5 (100%)** |
-| SPP1+ TAM | SPP1, GPNMB, CTSD, MRC1, CD63 | SPP1, GPNMB, CTSD, MRC1, CD63 | **5/5 (100%)** |
- 
-> GSE127465 폐암 단일 데이터에서 논문의 pan-cancer TAM 서브타입 패턴이 동일하게 재현됨
-> ISG15+ TAM은 단일 암종 데이터의 한계로 뚜렷한 클러스터로 분리되지 않음 -> phase 2b 다암종 확장에서 검증
+
+논문 Figure 2E marker gene과 기존 TAM 관련 문헌에서 보고된 marker gene을 함께 활용하여 C1QC+ TAM 및 SPP1+ TAM annotation을 수행하였다.
+
+Dotplot, gene score, UMAP 패턴을 종합적으로 검토한 결과, GSE127465에서도 논문에서 보고된 C1QC+ TAM 및 SPP1+ TAM과 유사한 macrophage subtype이 관찰되었다.
+
+일부 cluster는 marker 발현이 애매하여 tentative subtype으로 분리하여 추가 검토하였으며, 최종 DEG 검증에서는 유사한 marker expression pattern을 보이는 cluster를 통합하여 분석하였다.
+
+ISG15+ TAM은 단일 암종 데이터의 한계로 뚜렷하게 분리되지 않았으며, 이후 pan-cancer 데이터(GSE154763)에서 추가 검증하였다.
+
+> C1QC+ TAM marker: 논문 Figure 2E (C1QA, C1QB, C1QC) 및 본문 언급 (APOE, FOLR2) 기반  
+> SPP1+ TAM marker: 논문 Figure 2E (SPP1) 및 SPP1+ TAM 관련 문헌 기반 marker (GPNMB, CTSD, MRC1, CD63) 조합
 
 ### 독립 검증 결과 (Phase 2b — GSE154763, 8개 암종)
  
@@ -83,7 +86,7 @@ QC → Normalization → HVG 선택 → PCA → UMAP → Clustering
        ↓
 TAM 서브타입 세분화 (C1QC+, SPP1+) + DEG 분석 (Wilcoxon)
        ↓
-논문 marker gene vs DEG top 50 overlap 검증
+TAM marker gene expression 및 DEG 기반 subtype 검증
        ↓
 TME 세포 구성 분석 (샘플별 / 암종별 TAM 비율)
        ↓
@@ -166,7 +169,7 @@ scrna-cancer-immunology/
 |-------|------|------|------|
 | Phase 0 | 2026.04.21 ~ 2026.04.28 | 환경 세팅 + Scanpy 기초 | ✅ 완료 |
 | Phase 1 | 2026.04.30 ~ 2026.05.10 | GEO 실데이터 scRNA-seq 파이프라인 (GSE127465 폐암) | ✅ 완료 |
-| Phase 2a | 2026.05.16 ~ 2026.05.22 | TAM 서브타입 annotation + DEG 분석 + 논문 재현 | ✅ 완료 |
+| Phase 2a | 2026.05.16 ~ 2026.05.22 | TAM 서브타입 annotation + DEG 분석 + 논문 기반 검증 | ✅ 완료 |
 | Phase 2b | 2026.05.23 ~ 2026.06.01 | 다암종 확장 — GSE154763, GSE131907 통합 검증 | 🔄 진행중 |
 | Phase 3 | 2026.12~ | 메인 프로젝트 — scRNA-seq × H&E 이미지 통합 분석 | ⏳ 예정 |
 
