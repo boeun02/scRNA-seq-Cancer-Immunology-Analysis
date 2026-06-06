@@ -150,7 +150,13 @@ scrna-cancer-immunology/
 1. https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE127465 접속
 2. 아래 파일 다운로드:
    - GSE127465_RAW.tar
-3. 압축 풀고 phase1_scrna/dataset/ 폴더에 위치
+3. 압축 풀고 dataset/raw 폴더에 위치
+## GSE154763 다운로드 방법
+1. https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE154763 접속
+2. 아래 파일 다운로드:
+   - ESCA, KIDNEY, LYM, MYE, OV-FTC, PAAD, THCA, UCEC
+   - 각각 metadata + normalized_expression 쌍
+3. 압축 풀고 dataset/phase2b 폴더에 위치
 
 
 ---
@@ -230,4 +236,4 @@ PCA, UMAP, Leiden 단계에는 'random_state = 42'를 지정했으나, OS 및 �
 ---
 
 ## Notes
-- 바이오 용어 단어장: See [docs/bio_keywordbooks.md](docs/bio_keywordbooks.md)
+- 바이오 용어 단어장: See [docs/bioinformatics-concepts.md](docs/bioinformatics-concepts.md)
