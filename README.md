@@ -236,4 +236,4 @@ PCA, UMAP, Leiden 단계에는 'random_state = 42'를 지정했으나, OS 및 �
 ---
 
 ## Notes
-- 바이오 용어 단어장: See [docs/bioinformatics-concepts.md](docs/bioinformatics-concepts.md)
+- 바이오 용어 단어장: See [docs/bioinformatics_concepts.md](docs/bioinformatics_concepts.md)
