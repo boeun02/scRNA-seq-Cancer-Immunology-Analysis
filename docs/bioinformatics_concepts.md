@@ -45,6 +45,12 @@ Anndata 구조
 
 ## Data Structure
 ### 1. AnnData
+
+<26.05.02 ~ ...>
+# PHASE 1
+
+## GEO pipeline
+### 1. Raw Data 불러와서 데이터 구조 확인하기
 데이터 구조
 - 행 = 세포 (barcode)
 - 열: 유전자 (gene_name)
@@ -59,7 +65,7 @@ Anndata 구조
         ├─ varm     : gene 기준의 다차원 matrix 저장소
         ├─ layers   : X와 같은 shape의 보조 expression matrix
         └─ obsp     : cell × cell pairwise matrix
-
+        
         - obs : 세포별 정보 tb
             즉, adata.obs의 행 개수는 adata.n_obs와 같다
             > obs는 DB로 따지면 cell TB임
@@ -117,6 +123,7 @@ Anndata 구조
     원본 데이터가 행=유전자, 열=세포로 저장된 경우 .T로 전치 필요
         -> 데이터마다 다르므로 로딩 전 반드시 구조를 print 찍어서 확인할 것
     ex. adata = sc.AnnData(sp.csr_matrix(df.T.values.astype('float32')))
+
 
 ## Preprocessing
 ### 1. QC
