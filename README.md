@@ -38,16 +38,24 @@
 
 ### 재현 결과 (Phase 2a — GSE127465 폐암)
 
-논문 Figure 2E marker gene과 기존 TAM 관련 문헌에서 보고된 marker gene을 함께 활용하여 C1QC+ TAM 및 SPP1+ TAM annotation을 수행하였다.
+논문 Figure 2E와 Figure S3에 제시된 TAM subtype marker expression pattern을 기반으로 C1QC+ TAM, SPP1+ TAM 및 후보(tentative) subtype annotation을 수행하였다.
 
-Dotplot, gene score, UMAP 패턴을 종합적으로 검토한 결과, GSE127465에서도 논문에서 보고된 C1QC+ TAM 및 SPP1+ TAM과 유사한 macrophage subtype이 관찰되었다.
+Dotplot, gene score, UMAP distribution을 종합적으로 검토한 결과, GSE127465에서도 논문에서 보고된 C1QC+ TAM 및 SPP1+ TAM과 유사한 macrophage subtype이 관찰되었다.
 
-일부 cluster는 marker 발현이 애매하여 tentative subtype으로 분리하여 추가 검토하였으며, 최종 DEG 검증에서는 유사한 marker expression pattern을 보이는 cluster를 통합하여 분석하였다.
+일부 cluster는 marker expression이 명확하지 않아 tentative subtype으로 분리하여 보존하였으며, 이후 Differentially Expressed Gene(DEG) 분석을 통해 추가 검증하였다.
 
-ISG15+ TAM은 단일 암종 데이터의 한계로 뚜렷하게 분리되지 않았으며, 이후 pan-cancer 데이터(GSE154763)에서 추가 검증하였다.
+Subtype annotation의 검증에는 논문 Supplementary Table S3에 보고된 TAM subtype별 DEG signature를 사용하였다. 각 subtype의 DEG를 비교하여 논문에서 보고된 transcriptional program이 GSE127465에서도 재현되는지 평가하였다.
 
-> C1QC+ TAM marker: 논문 Figure 2E (C1QA, C1QB, C1QC) 및 본문 언급 (APOE, FOLR2) 기반  
-> SPP1+ TAM marker: 논문 Figure 2E (SPP1) 및 SPP1+ TAM 관련 문헌 기반 marker (GPNMB, CTSD, MRC1, CD63) 조합
+ISG15+ TAM은 단일 폐암 데이터에서는 독립적인 cluster로 명확하게 분리되지 않았으며, 이후 pan-cancer 데이터(GSE154763)를 이용한 확장 분석에서 추가 검증하였다.
+
+> Annotation reference
+>
+> * Figure 2E: subtype marker expression pattern
+> * Figure S3: subtype functional characteristics 및 marker distribution
+
+> Validation reference
+>
+> * Supplementary Table S3: TAM subtype-specific DEG signatures
 
 ### 독립 검증 결과 (Phase 2b — GSE154763, 8개 암종)
  
