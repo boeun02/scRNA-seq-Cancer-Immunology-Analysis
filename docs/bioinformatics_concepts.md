@@ -21,6 +21,30 @@ Anndata 구조
 15. PC = Principal Component (주성분)
     단수: PC
     복수: PCs
+16. scanpy 함수에서 tl, pl, pp의 의미
+    - pp: preprocess - 전처리 관련 함수 (데이터 준비)
+        - normalize
+        - filter
+        - scale
+        - neighbors
+        - highly_variable_genes
+    - tl: tool - 실제 분석 알고리즘 (분석 수행)
+        - pca
+        - umap
+        - leiden
+        - rank_genes_groups
+    - pl: plotting - 시각화 함수 (결과 시각화)
+        - violin
+        - umap
+        - dotplot
+        - heatmap
+    + get: 결과 추출
+
+
+# PHASE 1
+
+## Data Structure
+### 1. AnnData
 
 <26.05.02 ~ ...>
 # PHASE 1
@@ -31,7 +55,57 @@ Anndata 구조
 - 행 = 세포 (barcode)
 - 열: 유전자 (gene_name)
 - 값: raw_count (int형 값)
+    - AnnData 구조
+        AnnData
+        ├─ X        : 메인 행렬, cell × gene expression matrix
+        ├─ obs      : cell metadata table
+        ├─ var      : gene metadata table
+        ├─ uns      : unstructured data, 전역 설정/결과 저장소
+        ├─ obsm     : cell 기준의 다차원 matrix 저장소
+        ├─ varm     : gene 기준의 다차원 matrix 저장소
+        ├─ layers   : X와 같은 shape의 보조 expression matrix
+        └─ obsp     : cell × cell pairwise matrix
+        
+        - obs : 세포별 정보 tb
+            즉, adata.obs의 행 개수는 adata.n_obs와 같다
+            > obs는 DB로 따지면 cell TB임
+        - var: 유전자별 정보 테이블
+            > DB로 치면 gene TB
+        - X: 핵심 expression matrix
+            > DB로 치면 X는 cell_id, gene_id, expression_value 등을 가진 매핑 테이블/관계 테이블에 가깝다
+        - layers: X와 같은 모양의 보조 행렬
+            adata.X : 보통 normalize/log1p 된 값
+            adata.layers['counts']: 원본 raw count
+            > 즉, 둘 다 shape는 같다
+            내 데이터로 따지면 counts layer가 있으니까 원본 count를 따로 보존 해둔 상태
+        - obsm: observation matrix = 세포별 다차원 좌표/임베딩 저장소
+            > obs는 1차원 컬럼 위주고 obsm은 각 세포마다 벡터/행렬 형태의 결과 저장
+        - varm: var의 다차원 버전
+        - uns: unstructured annoation = 특정 cell이나 gene행에 딱 맞춰지는 데이터가 아닌 전역 결과/설정/메타정보 저장소
+            > uns['neighbors']에는 neighbor graph를 만들때 사용한 정보가 들어가고 실제 cell-cell 연결 행렬은 obsp에 들어감
+        - obsp: observation pairwise = cell x cell
 
+### 2. Sparse Matrix
+- Dense Tensor: 배열의 모든 위치에 값을 가지는 텐서
+    - 배열 안에 0과 같이 생략 가능한 원소까지 모두 저장하여 텐서의 크기가 늘어남
+    - 텐서 크기에 비례해서 메모리를 사용하기 때문에 OOM(out of memory)문제가 발생
+    - 데이터의 크기가 커질수록 계산량과 계산 시간을 증가하게 함
+- Sparse Tensor: 0이 아닌 원소와 그 위치를 저장하는 텐서
+    - 텐서에 0이 많을 수록 저장하는 양이 줄어들어 효율적인 memory사용이 가능하면 계산 시간이 감소하게 된다
+    1. COO(Coorfinate list) 방식
+    2. CSR/CSC(Compressed Sparse Row/Column) 방식
+
+### 3. COO, CSR / CSC
+1. COO(Coorfinate list) 방식
+    - 행, 열, 데이터의 인덱스 순서 배열을 활용하여 값의 위치를 저장하는 방식
+    - 매우 직관적인 방식이지만 행과 열의 인덱스를 별도로 저장
+    - 같은 행 혹은 같은 열에 데이터가 많을 경우, 반복해서 같은 값(row 1)이 저장되어 메모리를 비효율적으로 사용
+    - 데이터, 원소에 접근할 때 마다 행과 열의 인덱스 값을 조회하므로 연산 성능 저하 가능성 있음
+2. CSR/CSC(Compressed Sparse Row/Column) 방식
+    - '행/열의 경계를 표시하는 배열 row/column index pointer'와 '행과 열의 원소 순서대로 인덱스를 정렬한 배열 row/column index'을 활용하여 텐서의 원소를 저장
+    - 원소를 순회하는 방식으로 접근할 수 있어 효율적인 메모리 사용이 가능하지만, 구조가 복잡하고 직관적이지 않음
+
+### 4. 그 외
 - barcode sequence:
     barcode는 세포 하나하나를 구별하는 짧은 DNA 서열
     sequence는 생물학에서 순서가 아니라 DNA 염기 서열을 뜻함 (ex- bcIHWD 이런게 ATCG로 이루어진 짧은 DNA서열인데 표기할 때 압축하여 표현하면 저렇게 표현 됨)
@@ -50,3 +124,66 @@ Anndata 구조
         -> 데이터마다 다르므로 로딩 전 반드시 구조를 print 찍어서 확인할 것
     ex. adata = sc.AnnData(sp.csr_matrix(df.T.values.astype('float32')))
 
+
+## Preprocessing
+### 1. QC
+### 2. MAD
+### 3. Doublelet
+
+
+
+bioinformatics-concepts.md
+
+├─ Data Structure
+│  ├─ Sparse Matrix
+│  ├─ CSR / CSC
+│  ├─ AnnData
+│
+├─ Preprocessing
+│  ├─ QC
+│  ├─ MAD
+│  ├─ Doublet
+│  ├─ Ambient RNA
+│
+├─ Normalization
+│  ├─ CPM
+│  ├─ log1p
+│
+├─ Feature Selection
+│  ├─ HVG
+│
+├─ Dimensionality Reduction
+│  ├─ PCA
+│  ├─ Elbow Point
+│  ├─ Embedding
+│
+├─ Clustering
+│  ├─ Neighbors Graph
+│  ├─ Leiden
+│  ├─ Resolution
+│
+├─ Batch Correction
+│  ├─ Batch Effect
+│  ├─ Harmony
+│
+├─ Annotation
+│  ├─ Marker Gene
+│  ├─ Cell Type Annotation
+│
+├─ Differential Expression
+│  ├─ DEG
+│  ├─ logFC
+│  ├─ p-value
+│  ├─ adjusted p-value
+│
+├─ Immunology
+│  ├─ TAM
+│  ├─ C1QC TAM
+│  ├─ SPP1 TAM
+│  ├─ TME
+│
+└─ Future
+   ├─ CellChat
+   ├─ Trajectory
+   ├─ GSVA
+   ├─ Pseudobulk

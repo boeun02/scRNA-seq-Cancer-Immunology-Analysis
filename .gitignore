@@ -25,6 +25,7 @@ results/
 # *.jpg
 *.csv
 *.h5ad
+*.xlsx
 
 # Models
 *.pt
