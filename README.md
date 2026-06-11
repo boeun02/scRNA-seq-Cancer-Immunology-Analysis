@@ -41,12 +41,11 @@
 논문 Figure 2E와 Figure S3에 제시된 TAM subtype marker expression pattern을 기반으로 C1QC+ TAM, SPP1+ TAM 및 후보(tentative) subtype annotation을 수행하였다.
 
 Dotplot, gene score, UMAP distribution을 종합적으로 검토한 결과, GSE127465에서도 논문에서 보고된 C1QC+ TAM 및 SPP1+ TAM과 유사한 macrophage subtype이 관찰되었다.
-
 일부 cluster는 marker expression이 명확하지 않아 tentative subtype으로 분리하여 보존하였으며, 이후 Differentially Expressed Gene(DEG) 분석을 통해 추가 검증하였다.
-
+Marker expression이 약하거나 core subtype과 인접하지만 독립 cluster로 분리된 경우에는 tentative lebel로 보존하였다.
 Subtype annotation의 검증에는 논문 Supplementary Table S3에 보고된 TAM subtype별 DEG signature를 사용하였다. 각 subtype의 DEG를 비교하여 논문에서 보고된 transcriptional program이 GSE127465에서도 재현되는지 평가하였다.
 
-ISG15+ TAM은 단일 폐암 데이터에서는 독립적인 cluster로 명확하게 분리되지 않았으며, 이후 pan-cancer 데이터(GSE154763)를 이용한 확장 분석에서 추가 검증하였다.
+ISG15+ TAM은 단일 폐암 데이터에서는 독립적인 cluster로 명확하게 분리되지 않았으며, 이후 pan-cancer 데이터(GSE154763)를 이용한 확장 분석에서 별도로 확인하였다.
 
 > Annotation reference
 >
@@ -60,19 +59,19 @@ ISG15+ TAM은 단일 폐암 데이터에서는 독립적인 cluster로 명확하
 ### TAM subtype validation
 
 Dotplot과 DEG signature 분석 결과,
-C1QC-associated macrophage와 SPP1-associated macrophage가 논문에서 보고 된 transcriptional program과 유사하게 재현되었다.
+C1QC-associated macrophage와 SPP1-associated macrophage가 논문에서 보고된 transcriptional program과 유사하게 관찰되었다.
 ![Phase2a Dotplot](docs/figures/phase2a_tam_dotplot.png)
 
 ### Sample-level TAM composition
 
-Tentative subtype을 대표 subtype으로 통합한 후 sample 별 TAM composition을 비교하였다.
+Tentative subtype을 대표 subtype으로 통합한 후 sample별 TAM composition을 비교하였다.
 대부분의 sample에서 C1QC-associated TAM이 SPP1-associated TAM보다 높은 비율로 관찰되었으며, sample 간 composition heterogeneity가 확인되었다.
 ![Phase2a TAM Composition](docs/figures/phase2a_tam_composition.png)
 
 ### Key observations
 - C1QC-associated TAM은 대부분의 sample에서 SPP1-associated TAM보다 높은 비율로 관찰되었다.
 - Sample 간 TAM composition은 상당한 heterogeneity를 보였다.
-- 현재 정의한 subtype(C1QC/SPP1)만으로 모든 macrophage를 설명할 수는 없었으며, 추가적인 macrophage state가 존재할 가능성을 확인하였다.
+- 현재 정의한 subtype(C1QC/SPP1)만으로 모든 macrophage cluster를 설명할 수는 없었으며, 추가적인 macrophage state가 존재할 가능성을 확인하였다.
 
 ### 독립 검증 결과 (Phase 2b — GSE154763, 8개 암종)
  
@@ -109,15 +108,15 @@ QC → Normalization → HVG 선택 → PCA → UMAP → Clustering
        ↓
 세포 타입 annotation (Marker gene 기반)
        ↓
-TAM 서브타입 세분화 (C1QC+, SPP1+)
+TAM 서브타입 세분화 (C1QC-associated / SPP1-associated / tentative)
+       ↓
+marker expression 기반 subtype 검토 (dotplot, UMAP, gene score)
        ↓
 DEG 분석 (Wilcoxon)
        ↓
 Supplementary Table S3 signature validation
        ↓
-TAM marker gene expression 및 DEG 기반 subtype 검증
-       ↓
-TAM subtype composition 분석
+Tentative subtype 통합 및 TAM composition 분석
        ↓
 TME 세포 구성 분석 (샘플별 / 암종별 TAM 비율)
        ↓
@@ -148,7 +147,6 @@ scrna-cancer-immunology/
 │   │   ├── GSE127465_gene_names_human_41861.tsv
 │   │   └── GSE127465_RAW/               ← raw tsv 파일들
 │   └── 01_geo_pipeline.ipynb            ← GEO 실데이터 전처리 파이프라인
-├── phase2_analysis/
 ├── phase2_analysis/
 │   ├── 01_myeloid_subset.ipynb       ← 골수계 서브셋팅 + TAM annotation (2a)
 │   ├── 02_DEG_analysis.ipynb         ← DEG + overlap 확인 + dotplot (2a) + 다암종 DEG (2b)
