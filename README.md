@@ -57,6 +57,23 @@ ISG15+ TAM은 단일 폐암 데이터에서는 독립적인 cluster로 명확하
 >
 > * Supplementary Table S3: TAM subtype-specific DEG signatures
 
+### TAM subtype validation
+
+Dotplot과 DEG signature 분석 결과,
+C1QC-associated macrophage와 SPP1-associated macrophage가 논문에서 보고 된 transcriptional program과 유사하게 재현되었다.
+![Phase2a Dotplot](docs/figures/phase2a_tam_dotplot.png)
+
+### Sample-level TAM composition
+
+Tentative subtype을 대표 subtype으로 통합한 후 sample 별 TAM composition을 비교하였다.
+대부분의 sample에서 C1QC-associated TAM이 SPP1-associated TAM보다 높은 비율로 관찰되었으며, sample 간 composition heterogeneity가 확인되었다.
+![Phase2a TAM Composition](docs/figures/phase2a_tam_composition.png)
+
+### Key observations
+- C1QC-associated TAM은 대부분의 sample에서 SPP1-associated TAM보다 높은 비율로 관찰되었다.
+- Sample 간 TAM composition은 상당한 heterogeneity를 보였다.
+- 현재 정의한 subtype(C1QC/SPP1)만으로 모든 macrophage를 설명할 수는 없었으며, 추가적인 macrophage state가 존재할 가능성을 확인하였다.
+
 ### 독립 검증 결과 (Phase 2b — GSE154763, 8개 암종)
  
 **암종별 TAM subtype 구성 비율 (%):**
@@ -92,9 +109,15 @@ QC → Normalization → HVG 선택 → PCA → UMAP → Clustering
        ↓
 세포 타입 annotation (Marker gene 기반)
        ↓
-TAM 서브타입 세분화 (C1QC+, SPP1+) + DEG 분석 (Wilcoxon)
+TAM 서브타입 세분화 (C1QC+, SPP1+)
+       ↓
+DEG 분석 (Wilcoxon)
+       ↓
+Supplementary Table S3 signature validation
        ↓
 TAM marker gene expression 및 DEG 기반 subtype 검증
+       ↓
+TAM subtype composition 분석
        ↓
 TME 세포 구성 분석 (샘플별 / 암종별 TAM 비율)
        ↓
@@ -114,7 +137,7 @@ scrna-cancer-immunology/
 ├── requirements.txt
 ├── .gitignore
 ├── docs/
-│   ├── bio_keywordbooks.md              ← 용어정리
+│   ├── bioinformatics_concepts.md       ← 용어정리
 │   └── environment.md
 ├── phase0_basics/
 │   ├── data/
