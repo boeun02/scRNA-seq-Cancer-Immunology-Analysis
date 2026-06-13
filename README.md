@@ -41,8 +41,7 @@
 논문 Figure 2E와 Figure S3에 제시된 TAM subtype marker expression pattern을 기반으로 C1QC+ TAM, SPP1+ TAM 및 후보(tentative) subtype annotation을 수행하였다.
 
 Dotplot, gene score, UMAP distribution을 종합적으로 검토한 결과, GSE127465에서도 논문에서 보고된 C1QC+ TAM 및 SPP1+ TAM과 유사한 macrophage subtype이 관찰되었다.
-일부 cluster는 marker expression이 명확하지 않아 tentative subtype으로 분리하여 보존하였으며, 이후 Differentially Expressed Gene(DEG) 분석을 통해 추가 검증하였다.
-Marker expression이 약하거나 core subtype과 인접하지만 독립 cluster로 분리된 경우에는 tentative lebel로 보존하였다.
+Marker expression이 약하거나 core subtype과 UMAP상 인접하지만 독립 cluster로 분리된 경우에는 tentative label로 보존하였으며, 이후 DEG signature overlap을 통해 대표 subtype으로 통합할지 여부를 검토하였다.
 Subtype annotation의 검증에는 논문 Supplementary Table S3에 보고된 TAM subtype별 DEG signature를 사용하였다. 각 subtype의 DEG를 비교하여 논문에서 보고된 transcriptional program이 GSE127465에서도 재현되는지 평가하였다.
 
 ISG15+ TAM은 단일 폐암 데이터에서는 독립적인 cluster로 명확하게 분리되지 않았으며, 이후 pan-cancer 데이터(GSE154763)를 이용한 확장 분석에서 별도로 확인하였다.
@@ -58,8 +57,22 @@ ISG15+ TAM은 단일 폐암 데이터에서는 독립적인 cluster로 명확하
 
 ### TAM subtype validation
 
-Dotplot과 DEG signature 분석 결과,
-C1QC-associated macrophage와 SPP1-associated macrophage가 논문에서 보고된 transcriptional program과 유사하게 관찰되었다.
+Dotplot, gene score, UMAP distribution 및 DEG signature overlap을 함께 사용하여 TAM subtype annotation을 검토하였다.
+Best overlap 결과는 subtype annotation의 단독 기준이 아니라, marker expression pattern 및 UMAP상 위치와 함께 tentative subtype 통합 여부를 판단하기 위한 보조 근거로 사용하였다.
+
+Tentative subtype을 대표 subtype으로 통합하기 전에, 각 cluster의 DEG와 논문 Supplementary Table S3의 TAM subtype-specific DEG signature 간 overlap을 계산하였다.
+
+| Pre-integration subtype | Best-matched paper signature | Overlap | Ratio | Representative genes | Interpretation |
+|---|---|---:|---:|---|---|
+| C1QC+ TAM | Resting C1QC+ TAMs | 11 / 24 | 45.8% | APOE, APOC1, C1QA, C1QB, TREM2, VSIG4 | Supports C1QC-associated annotation |
+| C1QC+ TAM (tentative) | Resting C1QC+ TAMs | 17 / 24 | 70.8% | C1QA, C1QB, C1QC, APOE, SELENOP, HLA-DRA | Supports integration with C1QC-associated TAM |
+| SPP1+ TAM | SPP1+ TAMs | 1 / 9 | 11.1% | SPP1 | Limited DEG overlap; supported mainly by marker expression |
+| SPP1+ TAM (tentative) | SPP1+ TAMs | 2 / 9 | 22.2% | CXCL3, SPP1 | Partial SPP1-associated signal |
+| Unknown | No matched signature | 0 | 0.0% | - | Kept as unknown myeloid population |
+
+C1QC+ TAM과 C1QC+ TAM(tentative)는 모두 Resting C1QC+ TAM signature와 가장 높은 overlap을 보여, 두 cluster를 C1QC-associated TAM으로 통합할 근거를 제공하였다.
+SPP1+ TAM과 SPP1+ TAM(tentative) 역시 SPP1+ TAM signature와 best match되었으나 overlap gene 수는 제한적이었기 때문에 dotplot의 marker expression 및 UMAP 분포와 함께 보조 근거로 해석하였다.
+Unknown myeloid cluster는 tested TAM subtype signature와 명확한 overlap을 보이지 않아 C1QC/SPP1 subtype으로 강제 병합하지 않았다.
 ![Phase2a Dotplot](docs/figures/phase2a_tam_dotplot.png)
 
 ### Sample-level TAM composition
