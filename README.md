@@ -86,7 +86,13 @@ Tentative subtype을 대표 subtype으로 통합한 후 sample별 TAM compositio
 - Sample 간 TAM composition은 상당한 heterogeneity를 보였다.
 - 현재 정의한 subtype(C1QC/SPP1)만으로 모든 macrophage cluster를 설명할 수는 없었으며, 추가적인 macrophage state가 존재할 가능성을 확인하였다.
 
-### 독립 검증 결과 (Phase 2b — GSE154763, 8개 암종)
+### 다암종 확장 분석 (Phase 2b — GSE154763, 8개 암종)
+
+GSE154763은 이미 myeloid cell subset과 MajorCluster annotation이 제공된 pan-cancer datset이다.
+따라서 본 단계에서는 raw count 기반 QC, normalization, clustering을 새로 수행하지 않고, 제공된 normalized expression matrix와 cell type annotation을 활용하였다.
+
+MajorCluster label에 포함된 C1QC, SPP1, ISG15 keyword를 기준으로 macrophage subtype을 매핑한 뒤, 암종별 TAM subtype composition을 비교하였다.
+따라서 Phase 2b는 de novo subtype discovery가 아니라, 외부 annotation을 이용한 pan-cancer composition extension으로 해석하였다.
  
 **암종별 TAM subtype 구성 비율 (%):**
  
