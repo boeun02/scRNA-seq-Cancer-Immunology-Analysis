@@ -96,19 +96,31 @@ Unknown myeloid cluster는 tested TAM subtype signature와 명확한 overlap을 
 
  MajorCluster label에 포함된 C1QC, SPP1, ISG15 keyword를 기준으로 macrophage subtype을 매핑한 뒤, 암종별 TAM subtype composition을 비교하였다.
 따라서 Phase 2b는 de novo subtype discovery가 아니라, 외부 annotation을 이용한 pan-cancer composition extension으로 해석하였다.
- 
+
+#### A. Annotation-based strict subtype
+
 **암종별 TAM subtype 구성 비율 (%):**
+본 비율은 전체 cell 대시 비율이 아니라, 각 암종의 macrophage population 내부에서 C1QC+ TAM, SPP1+ TAM, ISG15+ TAM, Other Macrophage가 차지하는 비율이다.
  
-| 암종 | C1QC+ | SPP1+ | ISG15+ | Other |
-|---|---|---|---|---|
-| ESCA | 22.8 | 0.0 | 0.0 | 77.2 |
-| KIDNEY | 17.5 | 0.0 | 0.0 | 82.5 |
-| LYM | 9.9 | 0.0 | 90.1 | 0.0 |
-| MYE | 86.9 | 0.0 | 0.0 | 13.1 |
-| OV-FTC | 58.7 | 41.3 | 0.0 | 0.0 |
-| PAAD | 74.2 | 25.8 | 0.0 | 0.0 |
-| THCA | 13.3 | 15.0 | 4.3 | 67.4 |
-| UCEC | 20.6 | 25.6 | 7.6 | 46.2 |
+| tam_subtype | C1QC+ TAM | ISG15+ TAM | Other Macrophage | SPP1+ TAM | n_macrophages |
+| cancer |---|---|---|---|---|
+| ESCA |	22.8 |	0.0 |	77.2	| 0.0 |	4825 |
+| KIDNEY |	17.5 |	0.0	| 82.5 |	0.0 |	8796 |
+| LYM |	9.9 |	90.1 |	0.0 |	0.0 |	293 |
+| MYE |	86.9 |	0.0 |	13.1	| 0.0	| 1156 |
+| OV-FTC |	58.7	| 0.0 |	0.0	| 41.3 |	3278 |
+| PAAD	| 74.2 |	0.0 |	0.0	| 25.8	| 1379 |
+| THCA |	13.3	| 4.3 |	67.4	| 15.0 |	3326 |
+| UCEC |	20.6 |	7.6 |	46.2	| 25.6	| 4194 |
+
+**Stacked bar Plot 주요 결과**
+- LYM: ISG15+ TAM 90.1% - 다른 암종과 뚜렷하게 구분
+- MYE, PAAD: C1QC+ TAM 우세
+- OV-FTC, PAAD: C1QC+ + SPP1+ 공존
+- ESCA, KIDNEY: Other Macrophage 비중 높음
+- THCA, UCEC: 세 subtype + Other 모두 관찰
+
+![TAM_composition_Stacked_bar_Plot](docs/figures/phase2b_TAM_composition_stackbarplot.png)
 
 **UpSet Plot 주요 결과**
 - C1QC+ TAM - 8개 암종 전부 존재 (보편적 패턴)
@@ -116,8 +128,51 @@ Unknown myeloid cluster는 tested TAM subtype signature와 명확한 overlap을 
 - ISG15+ TAM - 3개 암종에만 존재 (LYM 90.1%, THCA, UCEC)
 - **Phase 2a 한계였던 ISG15+ TAM이 다암종 확장에서 확인됨** -> 단일 암종 데이터의 한계 검증 완료
 
-![TAM Subtype Composition by Cancer Type](docs/figures/phase2b_TAM_composition.png)
-![UpSet Plot](docs/figures/phase2b_upset_plot.png)
+![TAM_composition_UpSet Plot](docs/figures/phase2b_TAM_composition_upset_plot.png)
+
+#### B. Marker score-based validation
+Annotation-based strict subtype 분석은 기존 MajorCluster 이름에 의존한다.  
+따라서 cluster 이름에는 C1QC/SPP1/ISG15가 없지만, marker expression상 특정 subtype과 유사한 cluster가 있을 수 있다.
+
+이를 확인하기 위해 C1QC_score, SPP1_score, ISG15_score를 계산하여 기존 annotation과 marker expression 경향이 일치하는지 검증하였다.
+
+**Cancer-level score tendency 확인**
+
+| tam_subtype | C1QC+ TAM | ISG15+ TAM | SPP1+ TAM |
+| cancer |---|---|---|
+| ESCA	-0.484 |	-0.201	| 0.121 |
+| KIDNEY |	0.716 |	-0.162	| -0.063 |
+| LYM |	-0.683 |	-0.489	| 1.294 |
+| MYE	| 0.449 |	-0.153	| 0.122 |
+| OV-FTC |	0.859	| 0.379 |	-0.006 |
+| PAAD |	0.744	| 0.695	| 0.068 |
+| THCA	| -0.583 |	-0.363	| -0.001 |
+| UCEC	| -0.601 |	-0.096	| 0.103 |
+
+**Cancer-level subtype score violin 주요 결과**
+
+![C1QC_score_by_Cancer_Type](docs/figures/phase2b_subtype_score_violon_c1qc.png)
+![SPP1_score_by_Cancer_Type](docs/figures/phase2b_subtype_score_violon_spp1.png)
+![ISG15_score_by_Cancer_Type](docs/figures/phase2b_subtype_score_violon_isg15.png)
+
+**Optional: score-based marker program presence**
+
+> 본 분석은 탐색적(exploratory) 분석으로, threshold(score > 0) 기준에 따라 결과가 달라질 수 있다. Annotation-based strict subtype과 동일한 수준의 확정적 결론으로 해석하지 않는다.
+
+| tam_subtype | C1QC+ TAM | ISG15+ TAM | SPP1+ TAM |
+| cancer |---|---|---|
+| ESCA	-0.484 |	-0.201	| 0.121 |
+| KIDNEY |	0.716 |	-0.162	| -0.063 |
+| LYM |	-0.683 |	-0.489	| 1.294 |
+| MYE	| 0.449 |	-0.153	| 0.122 |
+| OV-FTC |	0.859	| 0.379 |	-0.006 |
+| PAAD |	0.744	| 0.695	| 0.068 |
+| THCA	| -0.583 |	-0.363	| -0.001 |
+| UCEC	| -0.601 |	-0.096	| 0.103 |
+
+**Score-based TAM Marker Presence UpSet plot 주요 결과**
+
+![Score-based TAM Marker Program Presence](docs/figures/phase2b_score_based_TAM_marker_upset_plot.png)
 
 ---
 
