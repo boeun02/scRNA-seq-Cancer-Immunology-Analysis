@@ -187,3 +187,76 @@ bioinformatics-concepts.md
    ├─ Trajectory
    ├─ GSVA
    ├─ Pseudobulk
+
+
+
+LYM_META column description
+
+- index
+  각 cell의 barcode 또는 cell ID.
+  예: AACACGTGTTTGGGCC-15
+
+- batch
+  batch 번호.
+  샘플 처리 단위, sequencing batch, 또는 데이터 병합 과정에서 부여된 batch ID로 보임.
+
+- patient
+  환자 ID.
+  예: P20181123
+
+- tissue
+  조직 출처.
+  현재 값은 T이며, tumor tissue를 의미하는 것으로 보임.
+
+- percent_hsp
+  heat shock protein 관련 gene expression 비율로 추정.
+  세포 스트레스 상태를 평가하는 QC 지표로 사용될 수 있음.
+
+- percent_mito
+  mitochondrial gene expression 비율.
+  일반적으로 세포 품질 QC에 사용됨. 값이 높으면 damaged/dead cell 가능성을 의심할 수 있음.
+
+- n_genes
+  해당 cell에서 검출된 gene 수.
+  single-cell QC에서 cell complexity를 나타내는 지표.
+
+- n_counts
+  해당 cell의 total UMI/count 수.
+  sequencing depth 또는 library size를 나타내는 지표.
+
+- MajorCluster
+  이미 부여된 cell type/subtype annotation.
+  예: M06_Macro_ISG15, M07_Macro_C1QC, M04_Mono_CD14.
+  이번 분석에서는 macrophage cluster 추출과 subtype 재검증의 기준 컬럼으로 사용 가능.
+
+- source
+  데이터 제공 출처 또는 연구 그룹.
+  예: ZhangLab.
+
+- tech
+  사용된 scRNA-seq 플랫폼 또는 library preparation 방식.
+  예: 10X5. 10x Genomics 5' 기반 데이터로 보임.
+
+- cancer
+  암종 정보.
+  현재 값은 LYM이며 lymphoma를 의미.
+
+- UMAP1
+  기존 분석에서 계산된 UMAP 1번 좌표.
+
+- UMAP2
+  기존 분석에서 계산된 UMAP 2번 좌표.
+
+
+  Other macrophage 구성 해석
+| MajorCluster    | n_cells | percent_in_other | 해석 방향                                           |
+| --------------- | ------: | ---------------: | ----------------------------------------------- |
+| M08_Macro_NLRP3 |    3903 |           25.48% | inflammatory / inflammasome-like macrophage     |
+| M09_Macro_IL1B  |    2363 |           15.43% | inflammatory cytokine macrophage                |
+| M10_Macro_GPNMB |    2264 |           14.78% | SPP1-like 또는 lipid/remodeling TAM 후보            |
+| M12_Macro_LYVE1 |    2202 |           14.38% | resident-like / tissue macrophage 계열 가능         |
+| M08_Macro_FN1   |    1319 |            8.61% | matrix remodeling / fibro-inflammatory state 가능 |
+| M11_Macro_LYVE1 |    1217 |            7.95% | resident-like / tissue macrophage 계열 가능         |
+| M13_Macro_INHBA |    1100 |            7.18% | TGFβ/activin 관련 activated macrophage 가능         |
+| M09_Macro_INHBA |     947 |            6.18% | activated / immunoregulatory macrophage 가능      |
+
