@@ -211,7 +211,7 @@ scrna-cancer-immunology/
 
 > **Phase 3 데이터 선정 기준**  
 > scRNA-seq + H&E 또는 Visium이 동일 코호트에서 paired로 제공되는 공개 데이터  
-> 후보: 10x Genomics 공개 Visium 데이터, 논문 reference 데이터셋 (GSE132465, GSE144735 CRC)
+> 후보: 후보: 10x Genomics 공개 Visium 데이터 (colorectal cancer FFPE, GBM FFPE)
 
 ## GSE127465 다운로드 방법
 1. https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE127465 접속
