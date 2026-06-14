@@ -130,7 +130,7 @@ Unknown myeloid cluster는 tested TAM subtype signature와 명확한 overlap을 
 
 ![TAM_composition_UpSet Plot](docs/figures/phase2b_TAM_composition_upset_plot.png)
 
-**최종 결과 분석**
+### 최종 결과 분석
 암종별 macrophage composition은 TAM subtype 구성에서 뚜렷한 차이를 보였다.
 
 C1QC+ TAM은 8개 암종 전체에서 관찰되었으며, MYE(86.9%), PAAD(74.2%), OV-FTC(58.7%)에서 우세하였다. ISG15+ TAM은 LYM에서 90.1%로 압도적이었고, THCA·UCEC에서 소량 관찰되었다. SPP1+ TAM은 OV-FTC, PAAD, THCA, UCEC 4개 암종에서만 관찰되었으며, 나머지 암종에서는 strict annotation 기준으로 존재하지 않았다.
