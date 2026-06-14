@@ -1,6 +1,6 @@
 # scRNA-seq Cancer Immunology Analysis
 
-암/면역 단일세포 RNA 시퀀싱 데이터 분석 파이프라인 구축 및 Tumor Microenvironment 연구 프로젝트
+Single-cell RNA sequencing pipeline for tumor-infiltrating immune cell analysis and TAM subtype characterization in cancer TME
 
 
 ---
