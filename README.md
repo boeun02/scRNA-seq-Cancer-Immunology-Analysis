@@ -241,9 +241,10 @@ scrna-cancer-immunology/
 
 ---
 
-## Pipeline Design
+## Pipeline Design (Phase 3 예정)
 
-분석 파이프라인은 `src/` 모듈로 분리되어 있어 데이터셋 교체 시 파라미터 설정만으로 재실행 가능
+Phase 3에서는 분석 파이프라인을 `src/` 모듈로 분리하여 데이터셋 교체 시 파라미터 설정만으로 재실행 가능하도록 설계할 예정이다.
+현재는 `utils/` 패키지로 경로 관리 및 validation helper를 모듈화하였다.
 
 ```python
 from src.preprocess import run_qc, normalize
