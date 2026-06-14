@@ -246,7 +246,7 @@ scrna-cancer-immunology/
 │   ├── 01_myeloid_subset.ipynb       ← 골수계 서브셋팅 + TAM annotation (2a)
 │   ├── 02_DEG_analysis.ipynb         ← DEG + overlap 확인 + dotplot (2a) + 다암종 DEG (2b)
 │   ├── 03_TME_composition.ipynb      ← TME 구성 분석 (2a + 2b)
-│   └── 04_pancancer_TAM_validation.ipynb
+│   └── 04_pancancer_TAM_validation.ipynb  ← pan-cancer annotation + marker score validation (2b)
 └── phase3_project/
     ├── 01_visium_preprocessing.ipynb    ← Visium paired 데이터 로드 + QC
     ├── 02_spatial_tam_scoring.ipynb     ← spot별 C1QC / SPP1 score 계산
@@ -277,7 +277,7 @@ scrna-cancer-immunology/
 
 > **Phase 3 데이터 선정 기준**  
 > scRNA-seq + H&E 또는 Visium이 동일 코호트에서 paired로 제공되는 공개 데이터  
-> 후보: 후보: 10x Genomics 공개 Visium 데이터 (colorectal cancer FFPE, GBM FFPE)
+> 후보: 10x Genomics 공개 Visium 데이터 (colorectal cancer FFPE, GBM FFPE)
 
 ## GSE127465 다운로드 방법
 1. https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE127465 접속
