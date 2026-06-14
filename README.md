@@ -41,13 +41,13 @@
 
 ### 재현 결과 (Phase 2a — GSE127465 폐암)
 
-논문 Figure 2E와 Figure S3에 제시된 TAM subtype marker expression pattern을 기반으로 C1QC+ TAM, SPP1+ TAM 및 후보(tentative) subtype annotation을 수행하였다.
+ 논문 Figure 2E와 Figure S3에 제시된 TAM subtype marker expression pattern을 기반으로 C1QC+ TAM, SPP1+ TAM 및 후보(tentative) subtype annotation을 수행하였다.
 
-Dotplot, gene score, UMAP distribution을 종합적으로 검토한 결과, GSE127465에서도 논문에서 보고된 C1QC+ TAM 및 SPP1+ TAM과 유사한 macrophage subtype이 관찰되었다.  
+ Dotplot, gene score, UMAP distribution을 종합적으로 검토한 결과, GSE127465에서도 논문에서 보고된 C1QC+ TAM 및 SPP1+ TAM과 유사한 macrophage subtype이 관찰되었다.  
 Marker expression이 약하거나 core subtype과 UMAP상 인접하지만 독립 cluster로 분리된 경우에는 tentative label로 보존하였으며, 이후 DEG signature overlap을 통해 대표 subtype으로 통합할지 여부를 검토하였다.  
 Subtype annotation의 검증에는 논문 Supplementary Table S3에 보고된 TAM subtype별 DEG signature를 사용하였다. 각 subtype의 DEG를 비교하여 논문에서 보고된 transcriptional program이 GSE127465에서도 재현되는지 평가하였다.  
 
-ISG15+ TAM은 단일 폐암 데이터에서는 독립적인 cluster로 명확하게 분리되지 않았으며, 이후 pan-cancer 데이터(GSE154763)를 이용한 확장 분석에서 별도로 확인하였다.
+ ISG15+ TAM은 단일 폐암 데이터에서는 독립적인 cluster로 명확하게 분리되지 않았으며, 이후 pan-cancer 데이터(GSE154763)를 이용한 확장 분석에서 별도로 확인하였다.
 
 > Annotation reference
 >
@@ -60,10 +60,10 @@ ISG15+ TAM은 단일 폐암 데이터에서는 독립적인 cluster로 명확하
 
 ### TAM subtype validation
 
-Dotplot, gene score, UMAP distribution 및 DEG signature overlap을 함께 사용하여 TAM subtype annotation을 검토하였다.  
+ Dotplot, gene score, UMAP distribution 및 DEG signature overlap을 함께 사용하여 TAM subtype annotation을 검토하였다.  
 Best overlap 결과는 subtype annotation의 단독 기준이 아니라, marker expression pattern 및 UMAP상 위치와 함께 tentative subtype 통합 여부를 판단하기 위한 보조 근거로 사용하였다.  
 
-Tentative subtype을 대표 subtype으로 통합하기 전에, 각 cluster의 DEG와 논문 Supplementary Table S3의 TAM subtype-specific DEG signature 간 overlap을 계산하였다.
+ Tentative subtype을 대표 subtype으로 통합하기 전에, 각 cluster의 DEG와 논문 Supplementary Table S3의 TAM subtype-specific DEG signature 간 overlap을 계산하였다.
 
 | Pre-integration subtype | Best-matched paper signature | Overlap | Ratio | Representative genes | Interpretation |
 |---|---|---:|---:|---|---|
@@ -73,14 +73,14 @@ Tentative subtype을 대표 subtype으로 통합하기 전에, 각 cluster의 DE
 | SPP1+ TAM (tentative) | SPP1+ TAMs | 2 / 9 | 22.2% | CXCL3, SPP1 | Partial SPP1-associated signal |
 | Unknown | No matched signature | 0 | 0.0% | - | Kept as unknown myeloid population |
 
-C1QC+ TAM과 C1QC+ TAM(tentative)는 모두 Resting C1QC+ TAM signature와 가장 높은 overlap을 보여, 두 cluster를 C1QC-associated TAM으로 통합할 근거를 제공하였다.  
+ C1QC+ TAM과 C1QC+ TAM(tentative)는 모두 Resting C1QC+ TAM signature와 가장 높은 overlap을 보여, 두 cluster를 C1QC-associated TAM으로 통합할 근거를 제공하였다.  
 SPP1+ TAM과 SPP1+ TAM(tentative) 역시 SPP1+ TAM signature와 best match되었으나 overlap gene 수는 제한적이었기 때문에 dotplot의 marker expression 및 UMAP 분포와 함께 보조 근거로 해석하였다.  
 Unknown myeloid cluster는 tested TAM subtype signature와 명확한 overlap을 보이지 않아 C1QC/SPP1 subtype으로 강제 병합하지 않았다.  
 ![Phase2a Dotplot](docs/figures/phase2a_tam_dotplot.png)
 
 ### Sample-level TAM composition
 
-Tentative subtype을 대표 subtype으로 통합한 후 sample별 TAM composition을 비교하였다.  
+ Tentative subtype을 대표 subtype으로 통합한 후 sample별 TAM composition을 비교하였다.  
 대부분의 sample에서 C1QC-associated TAM이 SPP1-associated TAM보다 높은 비율로 관찰되었으며, sample 간 composition heterogeneity가 확인되었다.  
 ![Phase2a TAM Composition](docs/figures/phase2a_tam_composition.png)  
 
@@ -91,10 +91,10 @@ Tentative subtype을 대표 subtype으로 통합한 후 sample별 TAM compositio
 
 ### 다암종 확장 분석 (Phase 2b — GSE154763, 8개 암종)
 
-GSE154763은 이미 myeloid cell subset과 MajorCluster annotation이 제공된 pan-cancer datset이다.
+ GSE154763은 이미 myeloid cell subset과 MajorCluster annotation이 제공된 pan-cancer datset이다.
 따라서 본 단계에서는 raw count 기반 QC, normalization, clustering을 새로 수행하지 않고, 제공된 normalized expression matrix와 cell type annotation을 활용하였다.
 
-MajorCluster label에 포함된 C1QC, SPP1, ISG15 keyword를 기준으로 macrophage subtype을 매핑한 뒤, 암종별 TAM subtype composition을 비교하였다.
+ MajorCluster label에 포함된 C1QC, SPP1, ISG15 keyword를 기준으로 macrophage subtype을 매핑한 뒤, 암종별 TAM subtype composition을 비교하였다.
 따라서 Phase 2b는 de novo subtype discovery가 아니라, 외부 annotation을 이용한 pan-cancer composition extension으로 해석하였다.
  
 **암종별 TAM subtype 구성 비율 (%):**
@@ -277,7 +277,7 @@ conda activate spatial
 
 패키지 상세 내역: [docs/environment.md](docs/environment.md)
 
-본 분석은 Windows 환경에서 재현성을 확인하였다.  
+ 본 분석은 Windows 환경에서 재현성을 확인하였다.  
 PCA, UMAP, Leiden 단계에는 'random_state = 42'를 지정했으나, OS 및 패키지 버전 차이에 따라 결과가 일부 달라질 수 있다.  
 동일 환경 내 재실행 시 결과가 일관적으로 재현되는지를 기준으로 삼았다.  
 
