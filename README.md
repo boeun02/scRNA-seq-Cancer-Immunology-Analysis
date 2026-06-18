@@ -15,7 +15,6 @@ Single-cell RNA sequencing pipeline for tumor-infiltrating immune cell analysis 
 
 > **Phase 3**  
 > "scRNA-seq에서 정의한 TAM subtype marker signature는 공간적으로 어디에 분포하는가?
-> - scRNA seq TAM subtype scoring x H&E 이미지 DINOv2 feature를 paired 데이터에서 통합 분석"
 > 
 
 ---
