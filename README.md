@@ -57,6 +57,7 @@ Subtype annotation의 검증에는 논문 Supplementary Table S3에 보고된 TA
 >
 > * Supplementary Table S3: TAM subtype-specific DEG signatures
 
+
 ### TAM subtype validation
 
  Dotplot, gene score, UMAP distribution 및 DEG signature overlap을 함께 사용하여 TAM subtype annotation을 검토하였다.  
@@ -84,9 +85,11 @@ Unknown myeloid cluster는 tested TAM subtype signature와 명확한 overlap을 
 ![Phase2a TAM Composition](docs/figures/phase2a_tam_composition.png)  
 
 ### Key observations
+
 - C1QC-associated TAM은 대부분의 sample에서 SPP1-associated TAM보다 높은 비율로 관찰되었다.    
 - Sample 간 TAM composition은 상당한 heterogeneity를 보였다.  
 - 현재 정의한 subtype(C1QC/SPP1)만으로 모든 macrophage cluster를 설명할 수는 없었으며, 추가적인 macrophage state가 존재할 가능성을 확인하였다.  
+
 
 ### 다암종 확장 분석 (Phase 2b — GSE154763, 8개 암종)
 
