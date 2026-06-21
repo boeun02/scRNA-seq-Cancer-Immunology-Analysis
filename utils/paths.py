@@ -3,6 +3,7 @@ from pathlib import Path
 BASE_DIR = Path('.') / 'dataset' / 'raw'
 DATA_DIR = BASE_DIR / 'GSE127465_RAW'
 H5AD_PATH = BASE_DIR / 'GSE127465_human_all.h5ad'
+RAW_LOGNORM_H5AD = BASE_DIR / 'GSE127465_human_raw_lognorm.h5ad'
 
 SAVE_DIR = Path('.') / 'dataset'
 HUMAN_H5AD = SAVE_DIR / 'GSE127465_human_final.h5ad'
