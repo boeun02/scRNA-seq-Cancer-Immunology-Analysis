@@ -46,7 +46,7 @@ Anndata 구조
 ## Data Structure
 ### 1. AnnData
 
-<26.05.02 ~ ...>
+
 # PHASE 1
 
 ## GEO pipeline
@@ -127,19 +127,74 @@ Anndata 구조
 
 ## Preprocessing
 ### 1. QC
+: QC란 Quality Control의 줄임말로 raw data를 분석 가능한 형태로 만들기 위한 1차 전처리 단계이다.
+  scRNA-seq 데이터는 실험 과정에서 낮은 품질의 세포, 죽은 세포, doublelet 등 다양한 노이즈가 포함될 수 있기 때문에, 본격적인 분석 전에 품질이 낮은 cell을 제거하는 과정이 필요하다.
+    - 세포별 검출 유전자 수
+      : 한 cell에서 검출 된 gene의 개수
+      검출 유전자 수가 지나치게 적으면 품질이 낮은 cell일 가능성이 있고 지나치케 많으면 doublelet일 가능성이 있다.
+    - 세포별 total counts
+      : 한 cell에서 측정된 전체 expression count
+      total counts가 너무 낮으면 sequencing depth가 부족한 cell일 수 있고 너무 높으면 여러 cell이 섞인 doublelet일 가능성이 있다.
+    - 미토콘드리아 유전자 비율
+      : 이 비율이 높다면 cell이 손상되었거나 죽어가는 세포로 판별
+      하여 일정 기준치를 넘는다면 제거를 고려할 수 있다.
+  `QC과정에서는 크게 두가지 방식의 필터링을 사용`
+  1. hard-cutoff :
+    > 데이터의 분포를 시각화한 뒤, 명확하게 비정상적으로 보이는 구간을 먼저 제거하는 방식
+    예를들어 검출 유전자 수가 지나치게 낮은 cell이나 total counts가 극단적으로 높은 cell은 이후 통계 기반 필터링에 영향을 줄 수 있으므로 사전에 제거한다.
+  2. MAD :
+    > hard-cutoff 이후 median absolute deviation(MAD)를 사용해서 데이터 분포에서 일정 범위 이상 벗어난 cell을 추가적으로 제거
+    이 방식은 단순히 고정된 기준값을 사용하는것이 아니라 데이터 자체의 분포를 기준으로 outlier를 제거할 수 있다는 이점이있다.
 ### 2. MAD
-### 3. Doublelet
+  : MAD는 Median Absolute Deviation의 줄임말로 데이터가 중앙값으로부터 얼마나 벗어나 있는지를 측정하는 robust statistic
 
+  일반적인 평균은 극단값에 영향을 크게 받지만 MAD는 중앙값을 기준으로 계산하기 떄문에 outlier에 상대적으로 강하다
+  따라서 scRNA-seq QC과정에서 각 cell의 품질 지표가 전체 분포에서 얼마나 벗어나 있는지 판단하는 데 사용할 수 있다
+  `적용방법`
+    1. 특정 QC 지표를 선택
+    2. 해당 지표의 중앙값 계산
+    3. 각 cell이 중앙값에서 얼마나 벗어났는지 계산한다
+    4. 일정 threshold 이상 벗어난 cell을 outlier로 판단하고 제거한다
+### 3. Doublelet
+  : 하나의 cell로 측정되어야하는 공간에 두 개 이상의 cell이 함께 들어간 경우를 의미
+  scRNA-seq에서는 일반적으로 single cell단위의 gene expression을 분석한다고 가정하지만 doublet이 포함되면 실제로는 여러 cell의 expression이 섞인 값이 하나의 cell 처럼 기록 될 수 있다
+  이런 현상은 droplet-based scRNA-seq 실험 과정에서 발생할 수 있다
+  세포를 작은 droplet안에 하나씩 분리해 넣는 과정에서 하나의 droplet 안에 두 개 이상의 cell이 함께 들어가면 doublelet이 된다
+  `double이 문제가 되는 이유`:
+    - 서로 다른 cell tupe의 expression이 섞여 잘못 된 cluster를 만들 수 있다
+    - 실제 존재하지않는 중간 상태의 cell처럼 보일 수 있다
+    - cell type anntation이나 downstream analysis결과를 왜곡 할 수 있다
+  > 따라서 doubelet을 적절히 탐지하고 제거하는 과정은 scRNA-seq 데이터 분서의 신뢰도를 높이는 데에 굉장히 중요한 역할을 한다
+
+
+## Normalization
+### 1. CPM
+
+### 2. log1p
+
+
+
+
+------------------------
+# 작성 format
+------------------------
+### 개념
+- 정의:
+- 필요한 이유:
+- 판단 기준:
+- 프로젝트 적용:
+- 주의할 점:
+------------------------
 
 
 bioinformatics-concepts.md
 
-├─ Data Structure
+├─ Data Structure o
 │  ├─ Sparse Matrix
 │  ├─ CSR / CSC
 │  ├─ AnnData
 │
-├─ Preprocessing
+├─ Preprocessing o
 │  ├─ QC
 │  ├─ MAD
 │  ├─ Doublet
