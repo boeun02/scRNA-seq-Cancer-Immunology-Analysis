@@ -1,6 +1,6 @@
 # scRNA-seq Cancer Immunology Analysis
 
-Single-cell RNA sequencing pipeline for reproducible macrophage-associated immune state characterization in lung cancer tumor microenviroment
+Single-cell RNA sequencing pipeline for reproducible macrophage-associated immune state characterization in lung cancer tumor microenvironment
 
 ---
 
@@ -35,8 +35,13 @@ GSE127465 폐암 데이터에서 C1QC-, SPP1-, ISG15-associated TAM program의 �
 > Reference: Nguyen TDT et al., Cancer Immunol Res 2026;14:350–66  
 > Corresponding authors: Inkyung Jung (KAIST), Woong-Yang Park
 
-- Pan-cancer macrophage lineage 분류 파이프라인 재현
-- GSE127465 폐암 데이터 기반으로 분석 적용 후 GSE154763 다암종 데이터로 독립 검증
+### Pipeline Correction Note
+Phase 2 분석 중 `adata.raw`가 HVG selection 이후 시점에 백업되어, DEG 분석에 사용된 expression matrix의 gene coverage가 의도치 않게 축소된 상태였음을 확인하였다.
+이를 수정하여 log-normalization 단계의 전체 gene을 보존한 matrix 기준으로 DEG 분석을 재실행하였으며, 본 README의 수치는 수정 후 결과를 반영한다.
+수정 전후 결과 비교는 troubleshooting log에 기록되어 있다.
+
+
+---
 
 ### 재현 결과 (Phase 2a — GSE127465 폐암)
 
@@ -44,70 +49,108 @@ GSE127465 폐암 데이터에서 C1QC-, SPP1-, ISG15-associated TAM program의 �
 
  Dotplot, gene score, UMAP distribution을 종합적으로 검토한 결과, GSE127465에서도 논문에서 보고된 C1QC+ TAM 및 SPP1+ TAM과 유사한 macrophage subtype이 관찰되었다.  
 Marker expression이 약하거나 core subtype과 UMAP상 인접하지만 독립 cluster로 분리된 경우에는 tentative label로 보존하였으며, 이후 DEG signature overlap을 통해 대표 subtype으로 통합할지 여부를 검토하였다.  
-Subtype annotation의 검증에는 논문 Supplementary Table S3에 보고된 TAM subtype별 DEG signature를 사용하였다. 각 subtype의 DEG를 비교하여 논문에서 보고된 transcriptional program이 GSE127465에서도 재현되는지 평가하였다.  
+Subtype annotation의 검증에는 논문 Supplementary Table S3에 보고된 TAM subtype별 DEG signature를 사용하였다.    
 
  ISG15+ TAM은 단일 폐암 데이터(GSE127465)에서는 독립적인 cluster로 명확하게 분리되지 않았으며, 이후 pan-cancer 데이터(GSE154763)를 이용한 확장 분석에서 별도로 확인하였다.
 
-### Core population 직접 비교 검증 (DEG-B)
-
-C1QC+ TAM core vs SPP1+ TAM core 직접 비교(Wilcoxon, Bonferroni)에서:
-- C1QC+ TAM 우세 유전자: SELENOP, C1QA, C1QB, C1QC, FOLR2, PLTP, SLC40A1
-- SPP1+ TAM 우세 유전자: SPP1, MCEMP1, RETN, VCAN, FCN1, S100A8
-
-두 core population은 vs-rest DEG-A에서 낮은 overlap을 보인 SPP1+ TAM core임에도,
-직접 비교에서 transcriptional program이 명확히 구분되었다.
-
-### Ambiguous population 귀속 검증 (DEG-C)
-
-SPP1+ TAM(tentative)은 SPP1 axis가 상대적으로 높게 관찰되었으나,
-DEG-C 분석 결과 C1QC-associated lipid/lysosomal feature(APOE, TREM2, CTSD, GPNMB)를
-SPP1 core보다 높게 발현하였다.
-최종적으로 Unresolved myeloid로 재분류하였으며, C1QC/SPP1 program이 혼재한
-transitional state로 해석하였다.
-
 > Annotation reference
->
 > * Figure 2E: subtype marker expression pattern
 > * Figure S3: subtype functional characteristics 및 marker distribution
-
+ 
 > Validation reference
->
 > * Supplementary Table S3: TAM subtype-specific DEG signatures
 
-
+---
 
 ### TAM subtype validation
 
- Dotplot, gene score, UMAP distribution 및 DEG signature overlap을 함께 사용하여 TAM subtype annotation을 검토하였다.  
+Dotplot, gene score, UMAP distribution 및 DEG signature overlap을 함께 사용하여 TAM subtype annotation을 검토하였다.
 Best overlap 결과는 subtype annotation의 단독 기준이 아니라, marker expression pattern 및 UMAP상 위치와 함께 tentative subtype 통합 여부를 판단하기 위한 보조 근거로 사용하였다.  
 
- Tentative subtype을 대표 subtype으로 통합하기 전에, 각 cluster의 DEG와 논문 Supplementary Table S3의 TAM subtype-specific DEG signature 간 overlap을 계산하였다.
+Tentative subtype을 대표 subtype으로 통합하기 전에, 각 cluster의 top 50 DEG와 논문 Supplementary Table S3의 TAM subtype-specific DEG signature 간 overlap을 계산하였다.  
 
 | Pre-integration subtype | Best-matched paper signature | Overlap | Ratio | Representative genes | Interpretation |
 |---|---|---:|---:|---|---|
-| C1QC+ TAM | Resting C1QC+ TAMs | 11 / 24 | 45.8% | APOE, APOC1, C1QA, C1QB, TREM2, VSIG4 | Supports C1QC-associated annotation |
-| C1QC+ TAM (tentative) | Resting C1QC+ TAMs | 17 / 24 | 70.8% | C1QA, C1QB, C1QC, APOE, SELENOP, HLA-DRA | Supports integration with C1QC-associated TAM |
-| SPP1+ TAM | SPP1+ TAMs | 1 / 9 | 11.1% | SPP1 | Limited DEG overlap; supported mainly by marker expression |
-| SPP1+ TAM (tentative) | SPP1+ TAMs | 2 / 9 | 22.2% | CXCL3, SPP1 | Partial SPP1-associated signal |
-| Unknown | No matched signature | 0 | 0.0% | - | Kept as unknown myeloid population |
+| C1QC+ TAM | Activated C1QC+ TAMs | 19 / 30 | 63.3% | SELENOP, FOLR2, PLTP, SLC40A1, C1QA, C1QB | Activated C1QC-like transcriptional program |
+| C1QC+ TAM (tentative) | Resting C1QC+ TAMs | 13 / 24 | 54.2% | FTL, CTSD, APOE, GPNMB, C1QA, C1QB, APOC1 | Resting C1QC-like / lysosomal-enriched feature |
+| SPP1+ TAM | SPP1+ TAMs | 7 / 9 | 77.8% | SPP1, FABP5, MARCO, FN1, CXCL3, INHBA, SDC2 | SPP1-associated transcriptional program 강하게 재현 |
+| C1QC/SPP1 mixed-signature TAM | — (ambiguous) | — | — | APOE, TREM2, CTSD 등 C1QC feature > SPP1 core; SPP1, FABP5 등 SPP1 feature > C1QC tentative | 두 axis를 함께 보이는 mixed-signature population |
+| Unresolved | No matched signature | 0 / — | 0% | FCN1, CFP, SELL, CORO1A | Monocyte-like / inflammatory myeloid population |
 
- C1QC+ TAM과 C1QC+ TAM(tentative)는 모두 Resting C1QC+ TAM signature와 가장 높은 overlap을 보여, 두 cluster를 C1QC-associated TAM으로 통합할 근거를 제공하였다.  
-SPP1+ TAM과 SPP1+ TAM(tentative) 역시 SPP1+ TAM signature와 best match되었으나 overlap gene 수는 제한적이었기 때문에 dotplot의 marker expression 및 UMAP 분포와 함께 보조 근거로 해석하였다.  
-Unknown myeloid cluster는 tested TAM subtype signature와 명확한 overlap을 보이지 않아 C1QC/SPP1 subtype으로 강제 병합하지 않았다.  
-![Phase2a Dotplot](docs/figures/phase2a_tam_dotplot.png)
+C1QC+ TAM과 C1QC+ TAM(tentative)는 모두 C1QC-associated signature와 가장 높은 overlap을 보여, 두 cluster를 C1QC-associated TAM으로 통합할 근거를 제공하였다.  
+SPP1+ TAM core는 reference signature 9개 중 7개(77.8%)가 재현되었으며, SPP1 자체가 2위 DEG로 확인되었다.  
+Unresolved myeloid cluster는 tested TAM subtype signature와 명확한 overlap을 보이지 않아 C1QC/SPP1 subtype으로 강제 병합하지 않았다.  
+
+![Phase2a Dotplot](docs/figures/phase2a_tam_dotplot.png)  
+
+
+---
+
+### Core population 직접 비교 검증 (DEG-B)
+
+C1QC+ TAM core와 SPP1+ TAM core를 직접 비교(Wilcoxon, Bonferroni)하여, vs-rest DEG에서 도출된 transcriptional 차이가 두 population 간 직접 비교에서도 유지되는지 확인하였다.  
+- C1QC+ TAM 우세 유전자: SELENOP, C1QA, C1QB, C1QC, PLTP, FOLR2, SLC40A1, F13A1, LGMN, DAB2, RNASE1  
+- SPP1+ TAM 우세 유전자: SPP1, MCEMP1, RETN, VCAN, FCN1, CLEC5A, S100A8, FABP5, FN1, INHBA  
+
+DEG-A(vs rest)에서 확인된 두 core population의 transcriptional 차이는 direct comparison에서도 동일하게 유지되었다.  
+또한 SPP1+ TAM core에서 RETN, VCAN, FCN1, CLEC5A, S100A8 등이 상대적으로 높게 나타나, 해당 population이 일부 monocyte-like 또는 inflammatory myeloid feature를 동반한 SPP1-associated state임을 시사한다.  
+
+
+---
+
+### Ambiguous population 귀속 검증 (DEG-C)
+
+기존 `SPP1+ TAM(tentative)`로 분류된 population은 reference signature overlap에서 Resting C1QC+ TAM signature와 더 높은 overlap을 보였으나, marker score 기반 annotation에서는 SPP1 axis가 상대적으로 높아 최종 subtype assignment가 불확실하였다.  
+
+이에 두 방향의 direct DEG comparison을 수행하였다.  
+
+**ambiguous vs SPP1+ TAM core:**  
+ambiguous population에서 C1QB, C1QA, C1QC, APOE, FTL, TREM2, CTSD, GPNMB 등의 발현이 유의하게 높았다.  
+→ SPP1 core에 비해 C1QC-associated lipid/lysosomal feature를 강하게 보유  
+ 
+**ambiguous vs C1QC+ TAM (tentative):**  
+ambiguous population에서 SPP1, FABP5, MARCO, SDC2, FN1, INHBA, CXCL3, CCL20 등의 발현이 유의하게 높았다.  
+→ C1QC tentative에 비해 SPP1-associated feature를 명확히 보유  
+ 
+종합하면, 해당 population은 C1QC+ TAM(tentative)도 SPP1+ TAM core도 아닌, 두 transcriptional axis를 함께 보이는 `C1QC/SPP1 mixed-signature TAM`으로 최종 재어노테이션하였다.  
+본 분석은 transcriptional comparison 기반이며, 실제 분화 경로의 intermediate state임을 직접 입증한 것은 아니다.  
+
+
+---
+
+### Final annotation summary
+
+| 최종 subtype | 특징 | 세포 수 |
+|---|---|---|
+| C1QC+ TAM | Activated C1QC-like transcriptional program | — |
+| C1QC+ TAM (tentative) | Resting C1QC-like / lysosomal-enriched | — |
+| SPP1+ TAM | SPP1-associated program 강하게 재현 | — |
+| C1QC/SPP1 mixed-signature TAM | 두 axis 혼재 (이전: SPP1+ TAM tentative) | — |
+| Unresolved | Monocyte-like / C1QC·SPP1 framework 외부 | — |
+
+
+---
 
 ### Sample-level TAM composition
 
  Tentative subtype을 대표 subtype으로 통합한 후 sample별 TAM composition을 비교하였다.  
 대부분의 sample에서 C1QC-associated TAM이 SPP1-associated TAM보다 높은 비율로 관찰되었으며, sample 간 composition heterogeneity가 확인되었다.  
+
 ![Phase2a TAM Composition](docs/figures/phase2a_tam_composition.png)  
+
+
+---
 
 ### Key observations
 
-- C1QC-associated TAM은 대부분의 sample에서 SPP1-associated TAM보다 높은 비율로 관찰되었다.    
-- Sample 간 TAM composition은 상당한 heterogeneity를 보였다.  
-- 현재 정의한 subtype(C1QC/SPP1)만으로 모든 macrophage cluster를 설명할 수는 없었으며, 추가적인 macrophage state가 존재할 가능성을 확인하였다.  
+- C1QC-associated TAM은 대부분의 sample에서 SPP1-associated TAM보다 높은 비율로 관찰되었다.
+- Sample 간 TAM composition은 상당한 heterogeneity를 보였다.
+- SPP1+ TAM core는 reference signature 9개 중 7개(77.8%)가 top 50 DEG에 재현되었으며, direct comparison(DEG-B)에서도 transcriptional 분리가 유지되었다.
+- 기존 SPP1+ TAM(tentative)는 DEG-C 검증 결과 C1QC/SPP1 mixed-signature TAM으로 재분류되었다.
+- 현재 정의한 subtype(C1QC/SPP1)만으로 모든 macrophage cluster를 설명할 수는 없었으며, Unresolved population 등 추가적인 macrophage state가 존재할 가능성을 확인하였다.
 
+
+---
 
 ### 다암종 확장 분석 (Phase 2b — GSE154763, 8개 암종)
 
@@ -300,11 +343,14 @@ scrna-cancer-immunology/
 > 후보: 10x Genomics 공개 Visium 데이터 (colorectal cancer FFPE, GBM FFPE)
 
 ## GSE127465 다운로드 방법
+
 1. https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE127465 접속
 2. 아래 파일 다운로드:
    - GSE127465_RAW.tar
 3. 압축 풀고 dataset/raw 폴더에 위치
+
 ## GSE154763 다운로드 방법
+
 1. https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE154763 접속
 2. 아래 파일 다운로드:
    - ESCA, KIDNEY, LYM, MYE, OV-FTC, PAAD, THCA, UCEC
