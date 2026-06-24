@@ -20,10 +20,10 @@ dataset/
 *.gz
 
 # Results
-results/
+# results/
 # *.png
 # *.jpg
-# *.csv
+*.csv
 *.h5ad
 *.xlsx
 
