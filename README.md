@@ -1,7 +1,6 @@
 # scRNA-seq Cancer Immunology Analysis
 
-Single-cell RNA sequencing pipeline for tumor-infiltrating immune cell analysis and TAM subtype characterization in cancer TME
-
+Single-cell RNA sequencing pipeline for reproducible macrophage-associated immune state characterization in lung cancer tumor microenviroment
 
 ---
 
@@ -10,7 +9,7 @@ Single-cell RNA sequencing pipeline for tumor-infiltrating immune cell analysis 
 > "GEO 공개 데이터(GSE127465)를 직접 전처리해서 폐암 tumor-infiltrating immune cell을 UMAP으로 시각화하고 세포 타입을 annotation할 수 있는가?"
 
 > **Phase 2**  
-> "폐암 환자 TME에서 TAM은 기원에 따라 C1QC+ / SPP1+ 서브타입으로 분류되며, 이 패턴은 pan-cancer 수준에서 재현되는가?"
+> "폐암 TME에서 macrophage-associated immune state(C1QC / SPP1 / ISG15 program)는 단일 데이터셋 내에서 통계적으로 구별 가능하며, pan-cancer 코호트에서도 재현 가능한 패턴으로 관찰되는가? 또한 annotation의 불확실성이 있는 population은 transcriptional evidence로 어떻게 해소되는가?"
 > 
 
 > **Phase 3**  
@@ -28,12 +27,13 @@ Single-cell RNA sequencing pipeline for tumor-infiltrating immune cell analysis 
 
 ---
 
-## Paper Reproduction (Phase 2)
+## Phase 2: Macrophage-Associated Immune State Analysis
 
-> Nguyen TDT, Lee AJ, Park HJ, et al.  
-> **Pan-Cancer Single-Cell RNA Sequencing Analysis Refines Multi-Origin Monocyte and Macrophage Lineages**  
-> *Cancer Immunol Res* 2026;14:350–66  
-> Corresponding authors: Inkyung Jung (KAIST), Woong-Yang Park (Samsung Medical Center)
+본 분석은 Nguyen et al. (Cancer Immunol Res, 2026)에서 보고된 pan-cancer macrophage lineage 분류 체계를 참조하여,  
+GSE127465 폐암 데이터에서 C1QC-, SPP1-, ISG15-associated TAM program의 통계적 구별 가능성과 cross-cohort 재현성을 검토하였다.  
+
+> Reference: Nguyen TDT et al., Cancer Immunol Res 2026;14:350–66  
+> Corresponding authors: Inkyung Jung (KAIST), Woong-Yang Park
 
 - Pan-cancer macrophage lineage 분류 파이프라인 재현
 - GSE127465 폐암 데이터 기반으로 분석 적용 후 GSE154763 다암종 데이터로 독립 검증
@@ -48,6 +48,23 @@ Subtype annotation의 검증에는 논문 Supplementary Table S3에 보고된 TA
 
  ISG15+ TAM은 단일 폐암 데이터(GSE127465)에서는 독립적인 cluster로 명확하게 분리되지 않았으며, 이후 pan-cancer 데이터(GSE154763)를 이용한 확장 분석에서 별도로 확인하였다.
 
+### Core population 직접 비교 검증 (DEG-B)
+
+C1QC+ TAM core vs SPP1+ TAM core 직접 비교(Wilcoxon, Bonferroni)에서:
+- C1QC+ TAM 우세 유전자: SELENOP, C1QA, C1QB, C1QC, FOLR2, PLTP, SLC40A1
+- SPP1+ TAM 우세 유전자: SPP1, MCEMP1, RETN, VCAN, FCN1, S100A8
+
+두 core population은 vs-rest DEG-A에서 낮은 overlap을 보인 SPP1+ TAM core임에도,
+직접 비교에서 transcriptional program이 명확히 구분되었다.
+
+### Ambiguous population 귀속 검증 (DEG-C)
+
+SPP1+ TAM(tentative)은 SPP1 axis가 상대적으로 높게 관찰되었으나,
+DEG-C 분석 결과 C1QC-associated lipid/lysosomal feature(APOE, TREM2, CTSD, GPNMB)를
+SPP1 core보다 높게 발현하였다.
+최종적으로 Unresolved myeloid로 재분류하였으며, C1QC/SPP1 program이 혼재한
+transitional state로 해석하였다.
+
 > Annotation reference
 >
 > * Figure 2E: subtype marker expression pattern
@@ -56,6 +73,7 @@ Subtype annotation의 검증에는 논문 Supplementary Table S3에 보고된 TA
 > Validation reference
 >
 > * Supplementary Table S3: TAM subtype-specific DEG signatures
+
 
 
 ### TAM subtype validation
