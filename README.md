@@ -12,7 +12,7 @@ Single-cell RNA sequencing pipeline for reproducible macrophage-associated immun
 > "폐암 TME에서 C1QC-associated, SPP1-associated 및 ISG15-associated TAM program은 단일 코호트에서 어떤 전사적 상태로 관찰되는가? 또한 별도 pan-cancer 공개 데이터에서 이와 관련된 macrophage distribution은 암종별로 어떻게 나타나는가?"
 > 
 
-> **Phase 2c**
+> **Phase 2c**  
 > “TAM-associated state composition의 차이는 샘플 수준의 immune ecosystem과 어떤 관계를 보이는가?”
 > 
 
