@@ -332,8 +332,8 @@ scrna-cancer-immunology/
 │   └── 02_troubleshooting_log.ipynb     ← phase1 트러블슈팅 로그
 ├── phase2_analysis/
 │   ├── 01_myeloid_subset.ipynb       ← 골수계 서브셋팅 + TAM annotation (2a)
-│   ├── 02_DEG_analysis.ipynb         ← DEG + overlap 확인 + dotplot (2a) + 다암종 DEG (2b)
-│   ├── 03_TME_composition.ipynb      ← TME 구성 분석 (2a + 2b)
+│   ├── 02_DEG_analysis.ipynb         ← DEG + overlap 확인 + dotplot (2a)
+│   ├── 03_TME_composition.ipynb      ← TME 구성 분석 (2a)
 │   ├── 04_pancancer_TAM_validation.ipynb  ← pan-cancer annotation + marker score validation (2b)
 │   ├── 05_immune_ecosystem.ipynb
 │   └── 06_troubleshooting_log.ipynb  ← phase2 트러블슈팅 로그
