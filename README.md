@@ -425,7 +425,7 @@ scrna-cancer-immunology/
 | Phase 1 | 2026.04.30 ~ 2026.05.10 | GEO 실데이터 scRNA-seq 파이프라인 (GSE127465 폐암) | ✅ 완료 |
 | Phase 2a | 2026.05.16 ~ 2026.05.22 | TAM 서브타입 annotation + DEG 분석 + 논문 기반 검증 | ✅ 완료 |
 | Phase 2b | 2026.05.23 ~ 2026.06.01 | 다암종 확장 — GSE154763 통합 검증 | ✅ 완료 |
-| 중간점검 | 2026.06.02 ~ 2026.6.24 | score_genes 결과 해석 추가 + interpretation note 보완 및 전체적인 수정 + 검증 추가 | ✅ 완료 |
+| 중간점검 | 2026.06.02 ~ 2026.06.24 | score_genes 결과 해석 추가 + interpretation note 보완 및 전체적인 수정 + 검증 추가 | ✅ 완료 |
 | Phase 2c | 2026.06.26 ~ | sample-level TAM state composition과 immune ecosystem 연관성 탐색 | 🔄 진행중 |
 | Phase 3 데이터 서치 | 2026.08 ~ | tumor spatial transcriptomics 공개 데이터 및 reference mapping 전략 선정 | ⏳ 예정 |
 | Phase 3 | 2026.09 ~ | TAM-associated program의 spatial niche 및 local cellular context 탐색 | ⏳ 예정 |
